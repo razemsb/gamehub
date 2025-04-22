@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GAMEHUB - Магазин цифровых ключей для игр">
+    <title>GAMEHUB | Магазин крутых игр</title>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="vendors/vue/vue.js" as="script">
+    <link rel="preload" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css" as="style">
+    <link rel="shortcut icon" href="img/controller.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css">
+    <script src="vendors/vue/vue.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="showNotification" class="notification" :class="{ 'show': showNotification, 'success': notificationType === 'success', 'error': notificationType === 'error' }">
+            <i :class="notificationType === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
+            <p>{{ notification }}</p>
+        </div>
+        <!-- Шапка -->
+        <header class="header">
+            <div class="container">
+                <div class="header__content">
+                    <a href="#" class="logo">GAME<span>HUB</span></a>
+                    <div class="cart-btn" @click="toggleCart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">{{ cart.length }}</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Главный баннер -->
+        <section class="hero">
+            <div class="container">
+                <h1>ЛУЧШИЕ ИГРЫ 2025</h1>
+                <p>Ключи для Steam, Origin, Epic Games и других платформ</p>
+            </div>
+        </section>
+
+        <div class="filters-bar">
+            <div class="container">
+                <div class="filters-container">
+                    <div class="filter-group platform-filter">
+                        <div class="filter-title">Платформа</div>
+                        <div class="platform-buttons">
+                            <button v-for="platform in platforms" :key="platform"
+                                :class="{ active: selectedPlatform === platform }" @click="togglePlatform(platform)">
+                                {{ platform }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group price-filter">
+                        <div class="filter-title">Цена</div>
+                        <div class="price-range">
+                            <input type="number" v-model="priceMin" placeholder="От">
+                            <span>-</span>
+                            <input type="number" v-model="priceMax" placeholder="До">
+                            <button class="apply-price">Применить</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group sort-filter">
+                        <div class="filter-title">Сортировка</div>
+                        <select v-model="sortOption" class="sort-select">
+                            <option value="default">По умолчанию</option>
+                            <option value="price-asc">Цена ↑</option>
+                            <option value="price-desc">Цена ↓</option>
+                            <option value="name-asc">Название (А-Я)</option>
+                            <option value="name-desc">Название (Я-А)</option>
+                        </select>
+                    </div>
+                    <button v-if="hasActiveFilters" class="reset-btn" @click="resetFilters">
+                        Сбросить фильтры
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Каталог игр -->
+        <section class="games">
+            <div class="container">
+                <h2 class="section-title">ПОПУЛЯРНЫЕ ИГРЫ</h2>
+
+                <div v-if="filteredProducts.length === 0" class="spinner-container">
+                    <div class="spinner"></div>
+                    <span class="spinner-text">Загрузка игр...</span>
+                </div>
+
+                <div class="games-grid" v-else>
+                    <div class="game-card" v-for="product in filteredProducts" :key="product.id">
+                        <div class="game-image" :style="{ backgroundImage: `url(img/${product.img})` }">
+                            <div class="release-badge" v-if="product.release">
+                                {{ product.release }}
+                            </div>
+                        </div>
+
+                        <div class="game-info">
+                            <div class="game-title-container">
+                                <h3 class="game-title">{{ product.name }}</h3>
+                                <button class="btn-icon info-btn" @click="showGameInfo(product)" title="Информация">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                            <div class="game-actions">
+                                <div class="badges-container">
+                                    <span class="game-platform">{{ product.platform }}</span>
+                                    <template v-if="product.marks && product.marks.trim()">
+                                        <span v-for="(mark, index) in product.marks.split(',')" :key="index"
+                                            class="game-badge">
+                                            {{ mark.trim() }}
+                                        </span>
+                                    </template>
+                                </div>
+                                <div class="price-container">
+                                    <div class="game-price">{{ product.price }} ₽</div>
+                                    <button class="btn-icon" :class="{ 'in-cart': isInCart(product.id) }"
+                                        @click="toggleCartItem(product.id)"
+                                        :title="isInCart(product.id) ? 'Убрать из корзины' : 'Добавить в корзину'">
+                                        <i :class="isInCart(product.id) ? 'fas fa-check' : 'fas fa-cart-plus'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading-indicator" v-if="isLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Загрузка...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Корзина (сайдбар) -->
+        <div class="cart-sidebar" :class="{ 'open': isCartOpen }">
+            <div class="cart-header">
+                <h3>Ваша корзина</h3>
+                <button class="close-btn" @click="toggleCart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="cart-items">
+                <div class="cart-item" v-for="item in cart" :key="item.productId">
+                    <div class="item-info">
+                        <!-- Добавляем изображение товара -->
+                        <img :src="'img/' + getProductImage(item.productId)" alt="product-image"
+                            class="product-image" />
+
+                        <div class="product-details">
+                            <h4>{{ getProductName(item.productId) }}</h4>
+                            <span>{{ getProductPrice(item.productId) }} ₽ × {{ item.quantity }}</span>
+                        </div>
+                    </div>
+                    <button class="remove-btn" @click="removeFromCart(item.productId)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="total">
+                    <span>Итого:</span>
+                    <span class="total-price">{{ total }} ₽</span>
+                </div>
+                <button class="checkout-btn" @click="checkout">
+                    Оформить заказ
+                </button>
+            </div>
+        </div>
+        <div class="overlay" :class="{ 'active': isCartOpen || showInfoModal }" @click="closeModals"></div>
+
+        <!-- Модальное окно с информацией об игре -->
+        <div class="modal" :class="{ 'show': showInfoModal }">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>{{ selectedGame.name }}</h3>
+                    <button class="close-btn" @click="closeModals">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Верхняя секция с галереей -->
+                    <div class="game-gallery-section">
+                        <div class="slider-container">
+                            <button class="slider-nav prev" @click="prevSlide">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="main-media">
+                                <img :src="'img/' + currentMedia.src" :alt="selectedGame.name" class="main-image">
+                            </div>
+                            <button class="slider-nav next" @click="nextSlide">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="media-thumbnails">
+                            <div class="thumbnail video-thumbnail" 
+                                :class="{ active: currentMedia.type === 'video' }"
+                                @click="selectVideo"
+                                v-if="selectedGame.media && selectedGame.media.video">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div v-for="(image, index) in selectedGame.media?.gallery" 
+                                :key="index" 
+                                class="thumbnail" 
+                                :class="{ active: currentMedia.type === 'image' && currentMedia.src === image }"
+                                @click="selectImage(image)">
+                                <img :src="'img/' + image" :alt="selectedGame.name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Нижняя секция с информацией -->
+                    <div class="game-info-section">
+                        <div class="game-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Платформа:</span>
+                                <span class="detail-value">{{ selectedGame.platform }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Жанр:</span>
+                                <span class="detail-value">{{ selectedGame.genre }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Издатель:</span>
+                                <span class="detail-value">{{ selectedGame.publisher }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Дата выхода:</span>
+                                <span class="detail-value">{{ selectedGame.releaseDate }}</span>
+                            </div>
+                        </div>
+                        <div class="game-description">
+                            <h4>Описание</h4>
+                            <p>{{ selectedGame.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
