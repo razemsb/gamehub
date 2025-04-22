@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Cyberpunk 2077",
+    "platform": "Steam",
+    "price": 1999,
+    "img": "cyberpunk.jpg",
+    "marks": "RPG, Открытый мир",
+    "release": "2020"
+  },
+  {
+    "id": 2,
+    "name": "Red Dead Redemption 2",
+    "platform": "Steam",
+    "price": 2499,
+    "img": "rdr2.jpg",
+    "marks": "Приключения, Открытый мир",
+    "release": "2019"
+  },
+  {
+    "id": 3,
+    "name": "The Witcher 3: Wild Hunt",
+    "platform": "Steam",
+    "price": 1499,
+    "img": "witcher3.jpg",
+    "marks": "RPG, Открытый мир",
+    "release": "2015"
+  },
+  {
+    "id": 4,
+    "name": "God of War",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "gow.jpg",
+    "marks": "Action, Приключения",
+    "release": "2022"
+  },
+  {
+    "id": 5,
+    "name": "Elden Ring",
+    "platform": "Steam",
+    "price": 3499,
+    "img": "eldenring.jpg",
+    "marks": "RPG, Souls-like",
+    "release": "2022"
+  }
+] 

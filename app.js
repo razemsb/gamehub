@@ -43,7 +43,7 @@ createApp({
         if (cachedProducts && cacheAge < 300000) {
           products.value = JSON.parse(cachedProducts);
         } else {
-          const response = await fetch('api/data.php');
+          const response = await fetch('api/data.json');
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
