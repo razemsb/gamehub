@@ -409,6 +409,36 @@ createApp({
       isCartOpen.value = false;
     };
 
+    // Перезагрузка данных
+    const reloadData = async () => {
+      try {
+        // Очищаем кэш
+        localStorage.removeItem('cachedProducts');
+        localStorage.removeItem('productsCacheTimestamp');
+        
+        // Очищаем текущие данные
+        products.value = [];
+        displayedProducts.value = [];
+        currentPage.value = 1;
+        
+        // Показываем анимацию загрузки
+        const reloadBtn = document.querySelector('.reload-btn');
+        reloadBtn.classList.add('rotating');
+        
+        // Загружаем данные заново
+        await loadProducts();
+        
+        // Убираем анимацию
+        reloadBtn.classList.remove('rotating');
+        
+        // Показываем уведомление
+        showNotificationMessage('Данные успешно обновлены', 'success');
+      } catch (error) {
+        console.error('Ошибка при перезагрузке данных:', error);
+        showNotificationMessage('Ошибка при обновлении данных', 'error');
+      }
+    };
+
     // Загружаем товары при старте
     onMounted(() => {
       loadProducts();
@@ -450,7 +480,8 @@ createApp({
       nextSlide,
       prevSlide,
       closeModals,
-      currentMedia
+      currentMedia,
+      reloadData
     };
   }
 }).mount('#app');

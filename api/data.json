@@ -6,7 +6,18 @@
     "price": 1999,
     "img": "cyberpunk.jpg",
     "marks": "RPG, Открытый мир",
-    "release": "2020"
+    "release": "2020",
+    "publisher": "CD PROJEKT RED",
+    "developer": "CD PROJEKT RED",
+    "genre": "RPG, Открытый мир, Киберпанк",
+    "media": {
+      "gallery": [
+        "cyberpunk1.jpg",
+        "cyberpunk2.jpg",
+        "cyberpunk3.jpg"
+      ],
+      "video": "cyberpunk-trailer.mp4"
+    }
   },
   {
     "id": 2,
@@ -15,7 +26,18 @@
     "price": 2499,
     "img": "rdr2.jpg",
     "marks": "Приключения, Открытый мир",
-    "release": "2019"
+    "release": "2019",
+    "publisher": "Rockstar Games",
+    "developer": "Rockstar Games",
+    "genre": "Приключения, Открытый мир, Вестерн",
+    "media": {
+      "gallery": [
+        "rdr2-1.jpg",
+        "rdr2-2.jpg",
+        "rdr2-3.jpg"
+      ],
+      "video": "rdr2-trailer.mp4"
+    }
   },
   {
     "id": 3,
@@ -24,16 +46,38 @@
     "price": 1499,
     "img": "witcher3.jpg",
     "marks": "RPG, Открытый мир",
-    "release": "2015"
+    "release": "2015",
+    "publisher": "CD PROJEKT RED",
+    "developer": "CD PROJEKT RED",
+    "genre": "RPG, Открытый мир, Фэнтези",
+    "media": {
+      "gallery": [
+        "witcher3-1.jpg",
+        "witcher3-2.jpg",
+        "witcher3-3.jpg"
+      ],
+      "video": "witcher3-trailer.mp4"
+    }
   },
   {
     "id": 4,
     "name": "God of War",
     "platform": "Steam",
     "price": 2999,
-    "img": "gow.jpg",
+    "img": "gow-preview.webp",
     "marks": "Action, Приключения",
-    "release": "2022"
+    "release": "2022",
+    "publisher": "Sony Interactive Entertainment",
+    "developer": "Santa Monica Studio",
+    "genre": "Action, Приключения, Мифология",
+    "media": {
+      "gallery": [
+        "gow-screen-1.jpg",
+        "gow-screen-2.jpg",
+        "gow-screen-3.jpg"
+      ],
+      "video": "gow-trailer.mp4"
+    }
   },
   {
     "id": 5,
@@ -42,6 +86,317 @@
     "price": 3499,
     "img": "eldenring.jpg",
     "marks": "RPG, Souls-like",
-    "release": "2022"
+    "release": "2022",
+    "publisher": "Bandai Namco Entertainment",
+    "developer": "FromSoftware",
+    "genre": "RPG, Souls-like, Открытый мир",
+    "media": {
+      "gallery": [
+        "eldenring-1.jpg",
+        "eldenring-2.jpg",
+        "eldenring-3.jpg"
+      ],
+      "video": "eldenring-trailer.mp4"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Baldur's Gate 3",
+    "platform": "Steam",
+    "price": 3999,
+    "img": "bg3.jpg",
+    "marks": "RPG, Классика",
+    "release": "2023",
+    "publisher": "Larian Studios",
+    "developer": "Larian Studios",
+    "genre": "RPG, Классика, Фэнтези",
+    "media": {
+      "gallery": [
+        "bg3-1.jpg",
+        "bg3-2.jpg",
+        "bg3-3.jpg"
+      ],
+      "video": "bg3-trailer.mp4"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Starfield",
+    "platform": "Steam",
+    "price": 4499,
+    "img": "starfield.jpg",
+    "marks": "RPG, Космос",
+    "release": "2023",
+    "publisher": "Bethesda Softworks",
+    "developer": "Bethesda Game Studios",
+    "genre": "RPG, Космос, Открытый мир",
+    "media": {
+      "gallery": [
+        "starfield-1.jpg",
+        "starfield-2.jpg",
+        "starfield-3.jpg"
+      ],
+      "video": "starfield-trailer.mp4"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Hogwarts Legacy",
+    "platform": "Steam",
+    "price": 3999,
+    "img": "hogwarts.jpg",
+    "marks": "RPG, Открытый мир",
+    "release": "2023",
+    "publisher": "Warner Bros. Games",
+    "developer": "Avalanche Software",
+    "genre": "RPG, Открытый мир, Фэнтези",
+    "media": {
+      "gallery": [
+        "hogwarts-1.jpg",
+        "hogwarts-2.jpg",
+        "hogwarts-3.jpg"
+      ],
+      "video": "hogwarts-trailer.mp4"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Resident Evil 4 Remake",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "re4.jpg",
+    "marks": "Хоррор, Экшен",
+    "release": "2023",
+    "publisher": "Capcom",
+    "developer": "Capcom",
+    "genre": "Хоррор, Экшен, Выживание",
+    "media": {
+      "gallery": [
+        "re4-1.jpg",
+        "re4-2.jpg",
+        "re4-3.jpg"
+      ],
+      "video": "re4-trailer.mp4"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Dead Space Remake",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "deadspace.jpg",
+    "marks": "Хоррор, Выживание",
+    "release": "2023",
+    "publisher": "Electronic Arts",
+    "developer": "Motive Studio",
+    "genre": "Хоррор, Выживание, Научная фантастика",
+    "media": {
+      "gallery": [
+        "deadspace-1.jpg",
+        "deadspace-2.jpg",
+        "deadspace-3.jpg"
+      ],
+      "video": "deadspace-trailer.mp4"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Call of Duty: Modern Warfare III",
+    "platform": "Steam",
+    "price": 3999,
+    "img": "mw3.jpg",
+    "marks": "Шутер, Мультиплеер",
+    "release": "2023",
+    "publisher": "Activision",
+    "developer": "Infinity Ward",
+    "genre": "Шутер, Мультиплеер, Экшен",
+    "media": {
+      "gallery": [
+        "mw3-1.jpg",
+        "mw3-2.jpg",
+        "mw3-3.jpg"
+      ],
+      "video": "mw3-trailer.mp4"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Alan Wake 2",
+    "platform": "Epic Games",
+    "price": 2999,
+    "img": "aw-preview.jpg",
+    "marks": "Хоррор, Психологический",
+    "release": "2023",
+    "publisher": "Epic Games",
+    "developer": "Remedy Entertainment",
+    "genre": "Хоррор, Психологический, Приключения",
+    "media": {
+      "gallery": [
+        "aw-screen-1.jpg",
+        "aw-screen-2.jpg",
+        "aw-screen-3.jpg"
+      ],
+      "video": "alanwake2-trailer.mp4"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Grand Theft Auto V",
+    "platform": "Steam",
+    "price": 4999,
+    "img": "gta6.jpg",
+    "marks": "Открытый мир, Экшен",
+    "release": "2013",
+    "publisher": "Rockstar Games",
+    "developer": "Rockstar Games",
+    "genre": "Открытый мир, Экшен, Приключения",
+    "media": {
+      "gallery": [
+        "gta6-1.jpg",
+        "gta6-2.jpg",
+        "gta6-3.jpg"
+      ],
+      "video": "gta6-trailer.mp4"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Final Fantasy XVI",
+    "platform": "Steam",
+    "price": 3999,
+    "img": "ff-preview.jpg",
+    "marks": "RPG, Фэнтези",
+    "release": "2023",
+    "publisher": "Square Enix",
+    "developer": "Square Enix",
+    "genre": "RPG, Фэнтези, Приключения",
+    "media": {
+      "gallery": [
+        "ff-screen-1.jpg",
+        "ff-screen-2.jpg",
+        "ff-screen-3.jpg"
+      ],
+      "video": "ff16-trailer.mp4"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Street Fighter 6",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "sf6.jpg",
+    "marks": "Файтинг, Мультиплеер",
+    "release": "2023",
+    "publisher": "Capcom",
+    "developer": "Capcom",
+    "genre": "Файтинг, Мультиплеер, Спорт",
+    "media": {
+      "gallery": [
+        "sf6-1.jpg",
+        "sf6-2.jpg",
+        "sf6-3.jpg"
+      ],
+      "video": "sf6-trailer.mp4"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Mortal Kombat 1",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "mk1.jpg",
+    "marks": "Файтинг, Мультиплеер",
+    "release": "2023",
+    "publisher": "Warner Bros. Games",
+    "developer": "NetherRealm Studios",
+    "genre": "Файтинг, Мультиплеер, Боевик",
+    "media": {
+      "gallery": [
+        "mk1-1.jpg",
+        "mk1-2.jpg",
+        "mk1-3.jpg"
+      ],
+      "video": "mk1-trailer.mp4"
+    }
+  },
+  {
+    "id": 17,
+    "name": "Assassin's Creed Mirage",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "acm-preview.jpg",
+    "marks": "Приключения, Стелс",
+    "release": "2023",
+    "publisher": "Ubisoft",
+    "developer": "Ubisoft",
+    "genre": "Приключения, Стелс, Открытый мир",
+    "media": {
+      "gallery": [
+        "asm-screen-1.jpg",
+        "asm-screen-2.jpg",
+        "asm-screen-3.jpg"
+      ],
+      "video": "acm-trailer.mp4"
+    }
+  },
+  {
+    "id": 18,
+    "name": "Spider-Man 2",
+    "platform": "Steam",
+    "price": 3999,
+    "img": "spiderman2.jpg",
+    "marks": "Приключения, Экшен",
+    "release": "2023",
+    "publisher": "Sony Interactive Entertainment",
+    "developer": "Insomniac Games",
+    "genre": "Приключения, Экшен, Открытый мир",
+    "media": {
+      "gallery": [
+        "spiderman2-1.jpg",
+        "spiderman2-2.jpg",
+        "spiderman2-3.jpg"
+      ],
+      "video": "spiderman2-trailer.mp4"
+    }
+  },
+  {
+    "id": 19,
+    "name": "Forza Motorsport",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "fm-preview.jpg",
+    "marks": "Гонки, Симулятор",
+    "release": "2023",
+    "publisher": "Xbox Game Studios",
+    "developer": "Turn 10 Studios",
+    "genre": "Гонки, Симулятор, Спорт",
+    "media": {
+      "gallery": [
+        "fm-screen-1.jpg",
+        "fm-screen-2.jpg",
+        "fm-screen-3.jpg"
+      ],
+      "video": "forza-trailer.mp4"
+    }
+  },
+  {
+    "id": 20,
+    "name": "Cities: Skylines II",
+    "platform": "Steam",
+    "price": 1999,
+    "img": "cities2.jpg",
+    "marks": "Стратегия, Симулятор",
+    "release": "2023",
+    "publisher": "Paradox Interactive",
+    "developer": "Colossal Order",
+    "genre": "Стратегия, Симулятор, Градостроительство",
+    "media": {
+      "gallery": [
+        "cities2-1.jpg",
+        "cities2-2.jpg",
+        "cities2-3.jpg"
+      ],
+      "video": "cities2-trailer.mp4"
+    }
   }
 ] 
