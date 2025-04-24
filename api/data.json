@@ -4,7 +4,7 @@
     "name": "Cyberpunk 2077",
     "platform": "Steam",
     "price": 1999,
-    "img": "cyberpunk.jpg",
+    "img": "preview/cyberpunk-preview.webp",
     "marks": "RPG, Открытый мир",
     "release": "2020",
     "publisher": "CD PROJEKT RED",
@@ -12,11 +12,11 @@
     "genre": "RPG, Открытый мир, Киберпанк",
     "media": {
       "gallery": [
-        "cyberpunk1.jpg",
-        "cyberpunk2.jpg",
-        "cyberpunk3.jpg"
+        "screenshots/cyberpunk-screen-1.webp",
+        "screenshots/cyberpunk-screen-2.webp",
+        "screenshots/cyberpunk-screen-3.webp"
       ],
-      "video": "cyberpunk-trailer.mp4"
+      "video": "https://www.youtube.com/watch?v=2-Y-XyD7gG4"
     }
   },
   {
@@ -24,7 +24,7 @@
     "name": "Red Dead Redemption 2",
     "platform": "Steam",
     "price": 2499,
-    "img": "rdr2.jpg",
+    "img": "preview/rdr2-preview.webp",
     "marks": "Приключения, Открытый мир",
     "release": "2019",
     "publisher": "Rockstar Games",
@@ -32,11 +32,11 @@
     "genre": "Приключения, Открытый мир, Вестерн",
     "media": {
       "gallery": [
-        "rdr2-1.jpg",
-        "rdr2-2.jpg",
-        "rdr2-3.jpg"
+        "screenshots/rdr2-screen-1.webp",
+        "screenshots/rdr2-screen-2.webp",
+        "screenshots/rdr2-screen-3.webp"
       ],
-      "video": "rdr2-trailer.mp4"
+      "video": "https://rutube.ru/video/red-dead-redemption-2-trailer/"
     }
   },
   {
@@ -44,7 +44,7 @@
     "name": "The Witcher 3: Wild Hunt",
     "platform": "Steam",
     "price": 1499,
-    "img": "witcher3.jpg",
+    "img": "preview/witcher3-preview.webp",
     "marks": "RPG, Открытый мир",
     "release": "2015",
     "publisher": "CD PROJEKT RED",
@@ -52,11 +52,11 @@
     "genre": "RPG, Открытый мир, Фэнтези",
     "media": {
       "gallery": [
-        "witcher3-1.jpg",
-        "witcher3-2.jpg",
-        "witcher3-3.jpg"
+        "screenshots/witcher3-screen-1.webp",
+        "screenshots/witcher3-screen-2.webp",
+        "screenshots/witcher3-screen-3.webp"
       ],
-      "video": "witcher3-trailer.mp4"
+      "video": "https://rutube.ru/video/witcher-3-trailer/"
     }
   },
   {
@@ -64,7 +64,7 @@
     "name": "God of War",
     "platform": "Steam",
     "price": 2999,
-    "img": "gow-preview.webp",
+    "img": "preview/gow-preview.jpg",
     "marks": "Action, Приключения",
     "release": "2022",
     "publisher": "Sony Interactive Entertainment",
@@ -72,11 +72,11 @@
     "genre": "Action, Приключения, Мифология",
     "media": {
       "gallery": [
-        "gow-screen-1.jpg",
-        "gow-screen-2.jpg",
-        "gow-screen-3.jpg"
+        "screenshots/gow-screen-1.webp",
+        "screenshots/gow-screen-2.webp",
+        "screenshots/gow-screen-3.webp"
       ],
-      "video": "gow-trailer.mp4"
+      "video": "https://rutube.ru/video/god-of-war-trailer/"
     }
   },
   {
@@ -84,7 +84,7 @@
     "name": "Elden Ring",
     "platform": "Steam",
     "price": 3499,
-    "img": "eldenring.jpg",
+    "img": "preview/elden-ring-preview.webp",
     "marks": "RPG, Souls-like",
     "release": "2022",
     "publisher": "Bandai Namco Entertainment",
@@ -92,11 +92,11 @@
     "genre": "RPG, Souls-like, Открытый мир",
     "media": {
       "gallery": [
-        "eldenring-1.jpg",
-        "eldenring-2.jpg",
-        "eldenring-3.jpg"
+        "screenshots/elden-ring-screen-1.webp",
+        "screenshots/elden-ring-screen-2.webp",
+        "screenshots/elden-ring-screen-3.webp"
       ],
-      "video": "eldenring-trailer.mp4"
+      "video": "https://rutube.ru/video/elden-ring-trailer/"
     }
   },
   {
@@ -104,7 +104,7 @@
     "name": "Baldur's Gate 3",
     "platform": "Steam",
     "price": 3999,
-    "img": "bg3.jpg",
+    "img": "preview/baldurs-gate-3-preview.jpg",
     "marks": "RPG, Классика",
     "release": "2023",
     "publisher": "Larian Studios",
@@ -112,11 +112,11 @@
     "genre": "RPG, Классика, Фэнтези",
     "media": {
       "gallery": [
-        "bg3-1.jpg",
-        "bg3-2.jpg",
-        "bg3-3.jpg"
+        "screenshots/baldurs-gate-3-screen-1.webp",
+        "screenshots/baldurs-gate-3-screen-2.webp",
+        "screenshots/baldurs-gate-3-screen-3.webp"
       ],
-      "video": "bg3-trailer.mp4"
+      "video": "https://rutube.ru/video/baldurs-gate-3-trailer/"
     }
   },
   {
@@ -124,7 +124,7 @@
     "name": "Starfield",
     "platform": "Steam",
     "price": 4499,
-    "img": "starfield.jpg",
+    "img": "preview/starfield-preview.jpg",
     "marks": "RPG, Космос",
     "release": "2023",
     "publisher": "Bethesda Softworks",
@@ -132,11 +132,11 @@
     "genre": "RPG, Космос, Открытый мир",
     "media": {
       "gallery": [
-        "starfield-1.jpg",
-        "starfield-2.jpg",
-        "starfield-3.jpg"
+        "screenshots/starfield-1.jpg",
+        "screenshots/starfield-2.jpg",
+        "screenshots/starfield-3.jpg"
       ],
-      "video": "starfield-trailer.mp4"
+      "video": "https://rutube.ru/video/starfield-trailer/"
     }
   },
   {
@@ -144,7 +144,7 @@
     "name": "Hogwarts Legacy",
     "platform": "Steam",
     "price": 3999,
-    "img": "hogwarts.jpg",
+    "img": "preview/hogwarts-preview.jpg",
     "marks": "RPG, Открытый мир",
     "release": "2023",
     "publisher": "Warner Bros. Games",
@@ -152,11 +152,11 @@
     "genre": "RPG, Открытый мир, Фэнтези",
     "media": {
       "gallery": [
-        "hogwarts-1.jpg",
-        "hogwarts-2.jpg",
-        "hogwarts-3.jpg"
+        "screenshots/hogwarts-1.jpg",
+        "screenshots/hogwarts-2.jpg",
+        "screenshots/hogwarts-3.jpg"
       ],
-      "video": "hogwarts-trailer.mp4"
+      "video": "https://rutube.ru/video/hogwarts-legacy-trailer/"
     }
   },
   {
@@ -164,7 +164,7 @@
     "name": "Resident Evil 4 Remake",
     "platform": "Steam",
     "price": 2999,
-    "img": "re4.jpg",
+    "img": "preview/re4-preview.jpg",
     "marks": "Хоррор, Экшен",
     "release": "2023",
     "publisher": "Capcom",
@@ -172,11 +172,11 @@
     "genre": "Хоррор, Экшен, Выживание",
     "media": {
       "gallery": [
-        "re4-1.jpg",
-        "re4-2.jpg",
-        "re4-3.jpg"
+        "screenshots/re4-1.jpg",
+        "screenshots/re4-2.jpg",
+        "screenshots/re4-3.jpg"
       ],
-      "video": "re4-trailer.mp4"
+      "video": "https://rutube.ru/video/resident-evil-4-trailer/"
     }
   },
   {
@@ -184,7 +184,7 @@
     "name": "Dead Space Remake",
     "platform": "Steam",
     "price": 2999,
-    "img": "deadspace.jpg",
+    "img": "preview/deadspace-preview.jpg",
     "marks": "Хоррор, Выживание",
     "release": "2023",
     "publisher": "Electronic Arts",
@@ -192,11 +192,11 @@
     "genre": "Хоррор, Выживание, Научная фантастика",
     "media": {
       "gallery": [
-        "deadspace-1.jpg",
-        "deadspace-2.jpg",
-        "deadspace-3.jpg"
+        "screenshots/deadspace-1.jpg",
+        "screenshots/deadspace-2.jpg",
+        "screenshots/deadspace-3.jpg"
       ],
-      "video": "deadspace-trailer.mp4"
+      "video": "https://rutube.ru/video/dead-space-trailer/"
     }
   },
   {
@@ -216,7 +216,7 @@
         "mw3-2.jpg",
         "mw3-3.jpg"
       ],
-      "video": "mw3-trailer.mp4"
+      "video": "https://rutube.ru/video/cod-mw3-trailer/"
     }
   },
   {
@@ -236,7 +236,7 @@
         "aw-screen-2.jpg",
         "aw-screen-3.jpg"
       ],
-      "video": "alanwake2-trailer.mp4"
+      "video": "https://rutube.ru/video/alan-wake-2-trailer/"
     }
   },
   {
@@ -256,7 +256,7 @@
         "gta6-2.jpg",
         "gta6-3.jpg"
       ],
-      "video": "gta6-trailer.mp4"
+      "video": "https://rutube.ru/video/gta5-trailer/"
     }
   },
   {
@@ -276,7 +276,7 @@
         "ff-screen-2.jpg",
         "ff-screen-3.jpg"
       ],
-      "video": "ff16-trailer.mp4"
+      "video": "https://rutube.ru/video/ff16-trailer/"
     }
   },
   {
@@ -296,7 +296,7 @@
         "sf6-2.jpg",
         "sf6-3.jpg"
       ],
-      "video": "sf6-trailer.mp4"
+      "video": "https://rutube.ru/video/sf6-trailer/"
     }
   },
   {
@@ -316,7 +316,7 @@
         "mk1-2.jpg",
         "mk1-3.jpg"
       ],
-      "video": "mk1-trailer.mp4"
+      "video": "https://rutube.ru/video/mk1-trailer/"
     }
   },
   {
@@ -336,7 +336,7 @@
         "asm-screen-2.jpg",
         "asm-screen-3.jpg"
       ],
-      "video": "acm-trailer.mp4"
+      "video": "https://rutube.ru/video/ac-mirage-trailer/"
     }
   },
   {
@@ -356,7 +356,7 @@
         "spiderman2-2.jpg",
         "spiderman2-3.jpg"
       ],
-      "video": "spiderman2-trailer.mp4"
+      "video": "https://rutube.ru/video/spiderman2-trailer/"
     }
   },
   {
@@ -376,7 +376,7 @@
         "fm-screen-2.jpg",
         "fm-screen-3.jpg"
       ],
-      "video": "forza-trailer.mp4"
+      "video": "https://rutube.ru/video/forza-trailer/"
     }
   },
   {
@@ -396,7 +396,178 @@
         "cities2-2.jpg",
         "cities2-3.jpg"
       ],
-      "video": "cities2-trailer.mp4"
+      "video": "https://rutube.ru/video/cities-skylines-2-trailer/"
+    }
+  },
+  {
+    "id": 21,
+    "name": "DOOM (2016)",
+    "platform": "Steam",
+    "price": 1999,
+    "img": "doom_2016.jpg",
+    "publisher": "Bethesda Softworks",
+    "developer": "id Software",
+    "genre": "Шутер",
+    "description": "Возрождение легендарной серии шутеров. Игра предлагает динамичный геймплей, мощное оружие и жестокие сражения с демонами.",
+    "media": {
+      "gallery": [
+        "img/doom-2016-1.jpg",
+        "img/doom-2016-2.jpg",
+        "img/doom-2016-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/doom-2016-trailer/"
+    }
+  },
+  {
+    "id": 22,
+    "name": "DOOM Eternal",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "doom_eternal.jpg",
+    "publisher": "Bethesda Softworks",
+    "developer": "id Software",
+    "genre": "Шутер",
+    "description": "Продолжение DOOM 2016 года. Игра предлагает еще более динамичный геймплей, новые механики и эпические сражения.",
+    "media": {
+      "gallery": [
+        "img/doom-eternal-1.jpg",
+        "img/doom-eternal-2.jpg",
+        "img/doom-eternal-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/doom-eternal-trailer/"
+    }
+  },
+  {
+    "id": 23,
+    "name": "DOOM 3",
+    "platform": "Steam",
+    "price": 999,
+    "img": "doom_3.jpg",
+    "publisher": "Activision",
+    "developer": "id Software",
+    "genre": "Шутер",
+    "description": "Классический хоррор-шутер, который переосмыслил серию DOOM. Игра предлагает атмосферный геймплей и напряженные сражения.",
+    "media": {
+      "gallery": [
+        "img/doom-3-1.jpg",
+        "img/doom-3-2.jpg",
+        "img/doom-3-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/doom-3-trailer/"
+    }
+  },
+  {
+    "id": 24,
+    "name": "DOOM II: Hell on Earth",
+    "platform": "Steam",
+    "price": 499,
+    "img": "doom_2.jpg",
+    "publisher": "id Software",
+    "developer": "id Software",
+    "genre": "Шутер",
+    "description": "Классический шутер, который стал культовым. Игра предлагает классический геймплей и множество уровней.",
+    "media": {
+      "gallery": [
+        "img/doom-2-1.jpg",
+        "img/doom-2-2.jpg",
+        "img/doom-2-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/doom-2-trailer/"
+    }
+  },
+  {
+    "id": 25,
+    "name": "DOOM",
+    "platform": "Steam",
+    "price": 399,
+    "img": "doom_1.jpg",
+    "publisher": "id Software",
+    "developer": "id Software",
+    "genre": "Шутер",
+    "description": "Первая игра в серии DOOM, которая положила начало жанру шутеров. Игра предлагает классический геймплей и множество уровней.",
+    "media": {
+      "gallery": [
+        "img/doom-1-1.jpg",
+        "img/doom-1-2.jpg",
+        "img/doom-1-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/doom-1-trailer/"
+    }
+  },
+  {
+    "id": 26,
+    "name": "God of War Ragnarök",
+    "platform": "PSN",
+    "price": 3999,
+    "img": "gow_ragnarok.jpg",
+    "publisher": "Sony Interactive Entertainment",
+    "developer": "Santa Monica Studio",
+    "genre": "Action-Adventure",
+    "description": "Продолжение God of War. Игра предлагает захватывающий сюжет, динамичные сражения и эпические боссы.",
+    "media": {
+      "gallery": [
+        "img/gow-ragnarok-1.jpg",
+        "img/gow-ragnarok-2.jpg",
+        "img/gow-ragnarok-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/gow-ragnarok-trailer/"
+    }
+  },
+  {
+    "id": 27,
+    "name": "FIFA 24",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "fifa_24.jpg",
+    "publisher": "Electronic Arts",
+    "developer": "EA Sports",
+    "genre": "Sports",
+    "description": "Новая часть популярного футбольного симулятора. Игра предлагает обновленный геймплей, команды и режимы.",
+    "media": {
+      "gallery": [
+        "img/fifa-24-1.jpg",
+        "img/fifa-24-2.jpg",
+        "img/fifa-24-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/fifa-24-trailer/"
+    }
+  },
+  {
+    "id": 28,
+    "name": "NBA 2K24",
+    "platform": "Steam",
+    "price": 2999,
+    "img": "nba_2k24.jpg",
+    "publisher": "2K Sports",
+    "developer": "Visual Concepts",
+    "genre": "Sports",
+    "description": "Новая часть популярного баскетбольного симулятора. Игра предлагает обновленный геймплей, команды и режимы.",
+    "media": {
+      "gallery": [
+        "img/nba-2k24-1.jpg",
+        "img/nba-2k24-2.jpg",
+        "img/nba-2k24-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/nba-2k24-trailer/"
+    }
+  },
+  {
+    "id": 29,
+    "name": "Gran Turismo 7",
+    "platform": "PSN",
+    "price": 3999,
+    "img": "gt-7.jpg",
+    "publisher": "Sony Interactive Entertainment",
+    "developer": "Polyphony Digital",
+    "genre": "Racing",
+    "description": "Новая часть легендарной серии гоночных симуляторов. Игра предлагает реалистичную физику, множество машин и трасс.",
+    "media": {
+      "gallery": [
+        "img/gt7-1.jpg",
+        "img/gt7-2.jpg",
+        "img/gt7-3.jpg"
+      ],
+      "video": "https://rutube.ru/video/gt7-trailer/"
     }
   }
 ] 

@@ -30,36 +30,46 @@ createApp({
     const showInfoModal = ref(false);
     const selectedGame = ref({});
     const currentMedia = ref({ type: 'image', src: '' });
+    const error = ref(null);
 
-    // Загрузка товаров с кэшированием
+    // Загрузка товаров
     const loadProducts = async () => {
       try {
+        isLoading.value = true;
+        error.value = null;
+        
         // Проверяем кэш
         const cachedProducts = localStorage.getItem('cachedProducts');
         const cacheTimestamp = localStorage.getItem('productsCacheTimestamp');
-        const cacheAge = cacheTimestamp ? Date.now() - Number(cacheTimestamp) : Infinity;
+        const now = Date.now();
         
-        // Используем кэш, если он не старше 5 минут
-        if (cachedProducts && cacheAge < 300000) {
+        // Если есть кэш и он не старше 5 минут, используем его
+        if (cachedProducts && cacheTimestamp && (now - parseInt(cacheTimestamp)) < 300000) {
           products.value = JSON.parse(cachedProducts);
         } else {
-          const response = await fetch('api/data.json');
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          console.log('Loaded products:', data); // Для отладки
-          products.value = data;
+          // Иначе загружаем новые данные
+          const response = await fetch('/gamehub/api/data.json');
           
-          // Обновляем кэш
-          localStorage.setItem('cachedProducts', JSON.stringify(data));
-          localStorage.setItem('productsCacheTimestamp', Date.now().toString());
+          if (!response.ok) {
+            throw new Error('Ошибка загрузки данных');
+          }
+          
+          products.value = await response.json();
+          
+          // Сохраняем в кэш
+          localStorage.setItem('cachedProducts', JSON.stringify(products.value));
+          localStorage.setItem('productsCacheTimestamp', now.toString());
         }
         
+        // Сбрасываем страницу и загружаем первую порцию товаров
+        currentPage.value = 1;
+        displayedProducts.value = [];
         loadMoreProducts();
-      } catch (error) {
-        console.error('Ошибка загрузки товаров:', error);
-        showNotificationMessage('Ошибка загрузки товаров: ' + error.message, 'error');
+        
+      } catch (err) {
+        error.value = 'Не удалось загрузить товары. Пожалуйста, попробуйте позже.';
+      } finally {
+        isLoading.value = false;
       }
     };
 
@@ -197,7 +207,15 @@ createApp({
     // Получение изображения товара
     const getProductImage = (productId) => {
       const product = getProductById(productId);
-      return product ? product.img : 'default.jpg';
+      if (!product) return 'img/default.png';
+      
+      // Если путь уже содержит префикс preview/, используем его как есть
+      if (product.img.startsWith('preview/')) {
+        return `img/${product.img}`;
+      }
+      
+      // Иначе добавляем префикс preview/
+      return `img/preview/${product.img}`;
     };
 
     // Название товара
@@ -277,13 +295,10 @@ createApp({
       saveCart();
     };
     
-    
-
     const isInCart = (productId) => {
       return cart.value.some(item => item.productId === productId);
     };
     
-
     // Сохранение корзины
     const saveCart = () => {
       localStorage.setItem('cart', JSON.stringify(cart.value));
@@ -299,6 +314,11 @@ createApp({
     // Открытие/закрытие корзины
     const toggleCart = () => {
       isCartOpen.value = !isCartOpen.value;
+      if (isCartOpen.value) {
+        document.body.classList.add('modal-open');
+      } else {
+        document.body.classList.remove('modal-open');
+      }
     };
 
     // Оформление заказа
@@ -332,6 +352,7 @@ createApp({
         src: game.img
       };
       showInfoModal.value = true;
+      document.body.classList.add('modal-open');
     };
 
     const selectImage = (image) => {
@@ -407,6 +428,7 @@ createApp({
     const closeModals = () => {
       showInfoModal.value = false;
       isCartOpen.value = false;
+      document.body.classList.remove('modal-open');
     };
 
     // Перезагрузка данных
@@ -423,13 +445,17 @@ createApp({
         
         // Показываем анимацию загрузки
         const reloadBtn = document.querySelector('.reload-btn');
-        reloadBtn.classList.add('rotating');
+        if (reloadBtn) {
+          reloadBtn.classList.add('rotating');
+        }
         
         // Загружаем данные заново
         await loadProducts();
         
         // Убираем анимацию
-        reloadBtn.classList.remove('rotating');
+        if (reloadBtn) {
+          reloadBtn.classList.remove('rotating');
+        }
         
         // Показываем уведомление
         showNotificationMessage('Данные успешно обновлены', 'success');
@@ -453,12 +479,13 @@ createApp({
       priceMax,
       sortOption,
       togglePlatform,
-      products: displayedProducts,
+      products: products.value,
+      displayedProducts,
       cart,
       isCartOpen,
       searchQuery,
       platforms,
-      filteredProducts: displayedProducts,
+      filteredProducts,
       isInCart,
       getProductName,
       getProductPrice,
@@ -481,7 +508,40 @@ createApp({
       prevSlide,
       closeModals,
       currentMedia,
-      reloadData
+      reloadData,
+      isLoading,
+      error,
+      applyPriceFilter: () => {
+        // Валидация цен
+        if (priceMin.value !== null && priceMin.value !== '') {
+          const minPrice = Number(priceMin.value);
+          if (isNaN(minPrice) || minPrice < 0) {
+            showNotificationMessage('Минимальная цена должна быть положительным числом', 'error');
+            return;
+          }
+        }
+        if (priceMax.value !== null && priceMax.value !== '') {
+          const maxPrice = Number(priceMax.value);
+          if (isNaN(maxPrice) || maxPrice < 0) {
+            showNotificationMessage('Максимальная цена должна быть положительным числом', 'error');
+            return;
+          }
+        }
+        if (priceMin.value !== null && priceMax.value !== null && 
+            Number(priceMin.value) > Number(priceMax.value)) {
+          showNotificationMessage('Минимальная цена не может быть больше максимальной', 'error');
+          return;
+        }
+
+        // Сохраняем значения в localStorage
+        localStorage.setItem('priceMin', priceMin.value);
+        localStorage.setItem('priceMax', priceMax.value);
+
+        // Сбрасываем страницу и перезагружаем товары
+        currentPage.value = 1;
+        displayedProducts.value = [];
+        loadMoreProducts();
+      }
     };
   }
 }).mount('#app');

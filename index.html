@@ -67,7 +67,7 @@
                             <input type="number" v-model="priceMin" placeholder="От">
                             <span>-</span>
                             <input type="number" v-model="priceMax" placeholder="До">
-                            <button class="apply-price">Применить</button>
+                            <button class="apply-price" @click="applyPriceFilter">Применить</button>
                         </div>
                     </div>
 
@@ -93,52 +93,76 @@
             <div class="container">
                 <h2 class="section-title">ПОПУЛЯРНЫЕ ИГРЫ</h2>
 
-                <div v-if="filteredProducts.length === 0" class="spinner-container">
+                <!-- Состояние загрузки -->
+                <div v-if="isLoading && !displayedProducts.length" class="spinner-container">
                     <div class="spinner"></div>
                     <span class="spinner-text">Загрузка игр...</span>
                 </div>
 
-                <div class="games-grid" v-else>
-                    <div class="game-card" v-for="product in filteredProducts" :key="product.id">
-                        <div class="game-image" :style="{ backgroundImage: `url(img/${product.img})` }">
-                            <div class="release-badge" v-if="product.release">
-                                {{ product.release }}
-                            </div>
-                        </div>
+                <!-- Состояние ошибки -->
+                <div v-else-if="error" class="error-container">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>{{ error }}</p>
+                    <button class="retry-btn" @click="reloadData">
+                        <i class="fas fa-sync-alt"></i>
+                        Попробовать снова
+                    </button>
+                </div>
 
-                        <div class="game-info">
-                            <div class="game-title-container">
-                                <h3 class="game-title">{{ product.name }}</h3>
-                                <button class="btn-icon info-btn" @click="showGameInfo(product)" title="Информация">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                            </div>
-                            <div class="game-actions">
-                                <div class="badges-container">
-                                    <span class="game-platform">{{ product.platform }}</span>
-                                    <template v-if="product.marks && product.marks.trim()">
-                                        <span v-for="(mark, index) in product.marks.split(',')" :key="index"
-                                            class="game-badge">
-                                            {{ mark.trim() }}
-                                        </span>
-                                    </template>
+                <!-- Состояние отсутствия игр -->
+                <div v-else-if="!isLoading && (!filteredProducts || filteredProducts.length === 0)" class="no-games-container">
+                    <i class="fas fa-gamepad"></i>
+                    <p v-if="hasActiveFilters">Игры по выбранным фильтрам не найдены</p>
+                    <p v-else>Игры не найдены</p>
+                    <button v-if="hasActiveFilters" class="reset-btn" @click="resetFilters">
+                        Сбросить фильтры
+                    </button>
+                </div>
+
+                <!-- Список игр -->
+                <template v-else>
+                    <div class="games-grid">
+                        <div class="game-card" v-for="product in filteredProducts" :key="product.id">
+                            <div class="game-image" :style="{ backgroundImage: `url(${getProductImage(product.id)})` }">
+                                <div class="release-badge" v-if="product.release">
+                                    {{ product.release }}
                                 </div>
-                                <div class="price-container">
-                                    <div class="game-price">{{ product.price }} ₽</div>
-                                    <button class="btn-icon" :class="{ 'in-cart': isInCart(product.id) }"
-                                        @click="toggleCartItem(product.id)"
-                                        :title="isInCart(product.id) ? 'Убрать из корзины' : 'Добавить в корзину'">
-                                        <i :class="isInCart(product.id) ? 'fas fa-check' : 'fas fa-cart-plus'"></i>
+                            </div>
+
+                            <div class="game-info">
+                                <div class="game-title-container">
+                                    <h3 class="game-title">{{ product.name }}</h3>
+                                    <button class="btn-icon info-btn" @click="showGameInfo(product)" title="Информация">
+                                        <i class="fas fa-info-circle"></i>
                                     </button>
+                                </div>
+                                <div class="game-actions">
+                                    <div class="badges-container">
+                                        <span class="game-platform">{{ product.platform }}</span>
+                                        <template v-if="product.marks && product.marks.trim()">
+                                            <span v-for="(mark, index) in product.marks.split(',')" :key="index"
+                                                class="game-badge">
+                                                {{ mark.trim() }}
+                                            </span>
+                                        </template>
+                                    </div>
+                                    <div class="price-container">
+                                        <div class="game-price">{{ product.price }} ₽</div>
+                                        <button class="btn-icon" :class="{ 'in-cart': isInCart(product.id) }"
+                                            @click="toggleCartItem(product.id)"
+                                            :title="isInCart(product.id) ? 'Убрать из корзины' : 'Добавить в корзину'">
+                                            <i :class="isInCart(product.id) ? 'fas fa-check' : 'fas fa-cart-plus'"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="loading-indicator" v-if="isLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <span>Загрузка...</span>
-                </div>
+                    <div v-if="isLoading && displayedProducts.length > 0" class="loading-indicator">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Загрузка...</span>
+                    </div>
+                </template>
             </div>
         </section>
 
@@ -198,7 +222,8 @@
                                 <i class="fas fa-chevron-left"></i>
                             </button>
                             <div class="main-media">
-                                <img :src="'img/' + currentMedia.src" :alt="selectedGame.name" class="main-image">
+                                <img v-if="currentMedia.type === 'image'" :src="'img/' + currentMedia.src" :alt="selectedGame.name" class="main-image">
+                                <iframe v-else-if="currentMedia.type === 'video'" :src="currentMedia.src" frameborder="0" allowfullscreen class="main-video"></iframe>
                             </div>
                             <button class="slider-nav next" @click="nextSlide">
                                 <i class="fas fa-chevron-right"></i>
