@@ -103,8 +103,8 @@
     "id": 6,
     "name": "Baldur's Gate 3",
     "platform": "Steam",
-    "price": 3999,
-    "img": "preview/baldurs-gate-3-preview.jpg",
+    "price": 1999,
+    "img": "preview/baldurs-gate-3-preview.webp",
     "marks": "RPG, Классика",
     "release": "2023",
     "publisher": "Larian Studios",
@@ -124,7 +124,7 @@
     "name": "Starfield",
     "platform": "Steam",
     "price": 4499,
-    "img": "preview/starfield-preview.jpg",
+    "img": "preview/starfield-preview.webp",
     "marks": "RPG, Космос",
     "release": "2023",
     "publisher": "Bethesda Softworks",
@@ -132,9 +132,9 @@
     "genre": "RPG, Космос, Открытый мир",
     "media": {
       "gallery": [
-        "screenshots/starfield-1.jpg",
-        "screenshots/starfield-2.jpg",
-        "screenshots/starfield-3.jpg"
+        "screenshots/starfield-screen-1.webp",
+        "screenshots/starfield-screen-2.webp",
+        "screenshots/starfield-screen-3.webp"
       ],
       "video": "https://rutube.ru/video/starfield-trailer/"
     }
@@ -144,7 +144,7 @@
     "name": "Hogwarts Legacy",
     "platform": "Steam",
     "price": 3999,
-    "img": "preview/hogwarts-preview.jpg",
+    "img": "preview/hogwarts-legacy-preview.webp",
     "marks": "RPG, Открытый мир",
     "release": "2023",
     "publisher": "Warner Bros. Games",
@@ -152,9 +152,9 @@
     "genre": "RPG, Открытый мир, Фэнтези",
     "media": {
       "gallery": [
-        "screenshots/hogwarts-1.jpg",
-        "screenshots/hogwarts-2.jpg",
-        "screenshots/hogwarts-3.jpg"
+        "screenshots/hogwarts-legacy-screen-1.webp",
+        "screenshots/hogwarts-legacy-screen-2.webp",
+        "screenshots/hogwarts-legacy-screen-3.webp"
       ],
       "video": "https://rutube.ru/video/hogwarts-legacy-trailer/"
     }
