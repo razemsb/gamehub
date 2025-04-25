@@ -31,6 +31,7 @@ createApp({
     const selectedGame = ref({});
     const currentMedia = ref({ type: 'image', src: '' });
     const error = ref(null);
+    const allProductsLoaded = ref(false);
 
     // Загрузка товаров
     const loadProducts = async () => {
@@ -139,9 +140,16 @@ createApp({
     const loadMoreProducts = () => {
       if (isLoading.value) return;
       
-      isLoading.value = true;
       const start = (currentPage.value - 1) * itemsPerPage;
       const end = start + itemsPerPage;
+      const totalProducts = filteredProducts.value.length;
+      
+      // Если достигли конца списка, прекращаем
+      if (start >= totalProducts) {
+        return;
+      }
+      
+      isLoading.value = true;
       
       // Имитируем задержку загрузки
       setTimeout(() => {
@@ -154,26 +162,60 @@ createApp({
 
     // Наблюдатель за прокруткой
     const setupIntersectionObserver = () => {
-      const observer = new IntersectionObserver((entries) => {
-        const lastEntry = entries[0];
-        if (lastEntry.isIntersecting && !isLoading.value) {
-          loadMoreProducts();
-        }
-      }, { threshold: 0.5 });
+      let observer = null;
+      let isObserving = false;
 
-      // Наблюдаем за последней карточкой
-      const observeLastCard = () => {
+      const createObserver = () => {
+        if (observer) {
+          observer.disconnect();
+          observer = null;
+        }
+
+        if (isObserving) return;
+
+        observer = new IntersectionObserver((entries) => {
+          const lastEntry = entries[0];
+          if (lastEntry.isIntersecting && !isLoading.value) {
+            const start = currentPage.value * itemsPerPage;
+            const totalProducts = filteredProducts.value.length;
+            
+            // Проверяем, достигли ли мы конца списка
+            if (start < totalProducts) {
+              loadMoreProducts();
+            } else {
+              isObserving = false;
+              observer.disconnect();
+              observer = null;
+            }
+          }
+        }, { threshold: 0.5 });
+
+        // Наблюдаем за последней карточкой
         const cards = document.querySelectorAll('.game-card');
         if (cards.length > 0) {
           const lastCard = cards[cards.length - 1];
           observer.observe(lastCard);
+          isObserving = true;
         }
       };
 
+      // Сбрасываем состояние при изменении фильтров или поиска
+      watch([searchQuery, selectedPlatform, priceMin, priceMax, sortOption], () => {
+        isObserving = false;
+        currentPage.value = 1;
+        displayedProducts.value = [];
+        setTimeout(createObserver, 100);
+      });
+
       // Переподключаем наблюдатель при изменении отображаемых товаров
       watch(displayedProducts, () => {
-        setTimeout(observeLastCard, 100);
+        if (!isObserving) {
+          setTimeout(createObserver, 100);
+        }
       });
+
+      // Создаем начальный наблюдатель
+      createObserver();
     };
 
     const showNotificationMessage = (message, type = 'success') => {
@@ -209,13 +251,17 @@ createApp({
       const product = getProductById(productId);
       if (!product) return 'img/preview/default.png';
       
-      // Если путь уже содержит префикс preview/, используем его как есть
-      if (product.img.startsWith('preview/')) {
-        return `img/${product.img}`;
-      }
+      // Всегда возвращаем полный путь к изображению
+      return `img/${product.img}`;
+    };
+
+    // Получение изображения для корзины
+    const getCartItemImage = (productId) => {
+      const product = getProductById(productId);
+      if (!product) return 'img/preview/default.png';
       
-      // Иначе добавляем префикс preview/
-      return `img/preview/${product.img}`;
+      // Для корзины всегда используем превью изображение
+      return `img/${product.img}`;
     };
 
     // Название товара
@@ -490,6 +536,7 @@ createApp({
       getProductName,
       getProductPrice,
       getProductImage,
+      getCartItemImage,
       addToCart,
       removeFromCart,
       toggleCartItem,

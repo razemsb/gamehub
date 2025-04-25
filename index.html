@@ -178,10 +178,7 @@
             <div class="cart-items">
                 <div class="cart-item" v-for="item in cart" :key="item.productId">
                     <div class="item-info">
-                        <!-- Добавляем изображение товара -->
-                        <img :src="'img/' + getProductImage(item.productId)" alt="product-image"
-                            class="product-image" />
-
+                        <img :src="getProductImage(item.productId)" :alt="getProductName(item.productId)" class="product-image" />
                         <div class="product-details">
                             <h4>{{ getProductName(item.productId) }}</h4>
                             <span>{{ getProductPrice(item.productId) }} ₽ × {{ item.quantity }}</span>
