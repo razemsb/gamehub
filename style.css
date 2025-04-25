@@ -518,7 +518,13 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+@media (max-width: 768px) {
+    .cart-sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+}
 .cart-sidebar.open {
     right: 0;
 }

@@ -207,7 +207,7 @@ createApp({
     // Получение изображения товара
     const getProductImage = (productId) => {
       const product = getProductById(productId);
-      if (!product) return 'img/default.png';
+      if (!product) return 'img/preview/default.png';
       
       // Если путь уже содержит префикс preview/, используем его как есть
       if (product.img.startsWith('preview/')) {
