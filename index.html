@@ -2,18 +2,20 @@
 <html lang="ru">
 
 <head>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GAMEHUB - Магазин цифровых ключей для игр">
     <title>GAMEHUB | Магазин крутых игр</title>
-    <link rel="preload" href="style.css" as="style">
     <link rel="preload" href="vendors/vue/vue.js" as="script">
     <link rel="preload" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css" as="style">
     <link rel="shortcut icon" href="img/controller.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css">
     <script src="vendors/vue/vue.js" defer></script>
     <script src="app.js" defer></script>
+    <script src="assest.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -51,42 +53,47 @@
         <div class="filters-bar">
             <div class="container">
                 <div class="filters-container">
-                    <div class="filter-group platform-filter">
-                        <div class="filter-title">Платформа</div>
-                        <div class="platform-buttons">
-                            <button v-for="platform in platforms" :key="platform"
-                                :class="{ active: selectedPlatform === platform }" @click="togglePlatform(platform)">
-                                {{ platform }}
-                            </button>
+                    <div class="filters-left">
+                        <div class="filter-group platform-filter">
+                            <div class="filter-title">Платформа</div>
+                            <div class="platform-buttons">
+                                <button v-for="platform in platforms" :key="platform"
+                                    :class="{ active: selectedPlatform === platform }" @click="togglePlatform(platform)">
+                                    {{ platform }}
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="filter-group price-filter">
-                        <div class="filter-title">Цена</div>
-                        <div class="price-range">
-                            <input type="number" v-model="priceMin" placeholder="От">
-                            <span>-</span>
-                            <input type="number" v-model="priceMax" placeholder="До">
-                            <button class="apply-price" @click="applyPriceFilter">Применить</button>
+                        <div class="filter-group price-filter">
+                            <div class="filter-title">Цена</div>
+                            <div class="price-range">
+                                <input type="number" v-model="priceMin" placeholder="От">
+                                <span>-</span>
+                                <input type="number" v-model="priceMax" placeholder="До">
+                                <button class="apply-price" @click="applyPriceFilter">Применить</button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="filter-group sort-filter">
-                        <div class="filter-title">Сортировка</div>
-                        <select v-model="sortOption" class="sort-select">
-                            <option value="default">По умолчанию</option>
-                            <option value="price-asc">Цена ↑</option>
-                            <option value="price-desc">Цена ↓</option>
-                            <option value="name-asc">Название (А-Я)</option>
-                            <option value="name-desc">Название (Я-А)</option>
-                        </select>
+                        <div class="filter-group sort-filter">
+                            <div class="filter-title">Сортировка</div>
+                            <select v-model="sortOption" class="sort-select">
+                                <option value="default">По умолчанию</option>
+                                <option value="price-asc">Цена ↑</option>
+                                <option value="price-desc">Цена ↓</option>
+                                <option value="name-asc">Название (А-Я)</option>
+                                <option value="name-desc">Название (Я-А)</option>
+                            </select>
+                        </div>
                     </div>
                     <button v-if="hasActiveFilters" class="reset-btn" @click="resetFilters">
-                        Сбросить фильтры
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
             </div>
         </div>
+        <button class="scroll-to-top-btn" id="scrollToTopBtn" title="Наверх" style="display:none;">
+            <i class="fas fa-arrow-up"></i>
+        </button>
 
         <!-- Каталог игр -->
         <section class="games">
@@ -122,7 +129,7 @@
                 <!-- Список игр -->
                 <template v-else>
                     <div class="games-grid">
-                        <div class="game-card" v-for="product in filteredProducts" :key="product.id">
+                        <div class="game-card" v-for="product in paginatedProducts" :key="product.id">
                             <div class="game-image" :style="{ backgroundImage: `url(${getProductImage(product.id)})` }">
                                 <div class="release-badge" v-if="product.release">
                                     {{ product.release }}
@@ -138,6 +145,7 @@
                                 </div>
                                 <div class="game-actions">
                                     <div class="badges-container">
+                                        <span class="game-pre-order" v-if="product['pre-order'] === true">Предзаказ!</span>
                                         <span class="game-platform">{{ product.platform }}</span>
                                         <template v-if="product.marks && product.marks.trim()">
                                             <span v-for="(mark, index) in product.marks.split(',')" :key="index"
@@ -158,9 +166,22 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="isLoading && displayedProducts.length > 0" class="loading-indicator">
-                        <i class="fas fa-spinner fa-spin"></i>
-                        <span>Загрузка...</span>
+                    <div class="pagination" v-if="totalPages > 1">
+                        <button class="page-btn arrow" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button
+                            v-for="page in visiblePages"
+                            :key="page"
+                            :class="['page-btn', { active: page === currentPage }, page === '...' ? 'dots' : '']"
+                            v-if="page !== '...'"
+                            @click="goToPage(page)">
+                            {{ page }}
+                        </button>
+                        <span v-else class="page-btn dots">...</span>
+                        <button class="page-btn arrow" :disabled="currentPage === totalPages" @click="goToPage(currentPage + 1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </template>
             </div>

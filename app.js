@@ -14,9 +14,8 @@ createApp({
     // Состояния с начальными значениями из localStorage
     const searchQuery = ref('');
     const products = ref([]);
-    const displayedProducts = ref([]);
-    const currentPage = ref(1);
-    const itemsPerPage = 12;
+    const currentPage = ref(getPageFromUrl());
+    const itemsPerPage = 8;
     const isLoading = ref(false);
     const cart = ref(JSON.parse(localStorage.getItem('cart')) || []);
     const isCartOpen = ref(false);
@@ -31,7 +30,13 @@ createApp({
     const selectedGame = ref({});
     const currentMedia = ref({ type: 'image', src: '' });
     const error = ref(null);
-    const allProductsLoaded = ref(false);
+
+    // Получение номера страницы из URL
+    function getPageFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const page = parseInt(params.get('page'), 10);
+      return (page && page > 0) ? page : 1;
+    }
 
     // Загрузка товаров
     const loadProducts = async () => {
@@ -64,9 +69,6 @@ createApp({
         
         // Сбрасываем страницу и загружаем первую порцию товаров
         currentPage.value = 1;
-        displayedProducts.value = [];
-        loadMoreProducts();
-        
       } catch (err) {
         error.value = 'Не удалось загрузить товары. Пожалуйста, попробуйте позже.';
       } finally {
@@ -77,8 +79,6 @@ createApp({
     // Дебаунсинг поиска
     const debouncedSearch = debounce(() => {
       currentPage.value = 1;
-      displayedProducts.value = [];
-      loadMoreProducts();
     }, 300);
 
     // Наблюдатель за поисковым запросом
@@ -94,8 +94,6 @@ createApp({
       localStorage.setItem('sortOption', sort);
       
       currentPage.value = 1;
-      displayedProducts.value = [];
-      loadMoreProducts();
     });
 
     // Оптимизированная фильтрация
@@ -136,87 +134,38 @@ createApp({
       }
     });
 
-    // Загрузка следующей порции товаров
-    const loadMoreProducts = () => {
-      if (isLoading.value) return;
-      
+    const totalPages = computed(() => Math.ceil(filteredProducts.value.length / itemsPerPage));
+    const paginatedProducts = computed(() => {
       const start = (currentPage.value - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      const totalProducts = filteredProducts.value.length;
-      
-      // Если достигли конца списка, прекращаем
-      if (start >= totalProducts) {
-        return;
+      return filteredProducts.value.slice(start, start + itemsPerPage);
+    });
+
+    function goToPage(page) {
+      if (page < 1 || page > totalPages.value) return;
+      currentPage.value = page;
+      // Обновляем URL без перезагрузки
+      const params = new URLSearchParams(window.location.search);
+      if (page === 1) {
+        params.delete('page');
+      } else {
+        params.set('page', page);
       }
-      
-      isLoading.value = true;
-      
-      // Имитируем задержку загрузки
+      const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+      window.history.replaceState({}, '', newUrl);
       setTimeout(() => {
-        const newProducts = filteredProducts.value.slice(start, end);
-        displayedProducts.value = [...displayedProducts.value, ...newProducts];
-        currentPage.value++;
-        isLoading.value = false;
-      }, 1000);
-    };
-
-    // Наблюдатель за прокруткой
-    const setupIntersectionObserver = () => {
-      let observer = null;
-      let isObserving = false;
-
-      const createObserver = () => {
-        if (observer) {
-          observer.disconnect();
-          observer = null;
+        const gamesSection = document.querySelector('.games');
+        if (gamesSection) {
+          gamesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(() => {
+            window.scrollBy({ top: -100, left: 0, behavior: 'smooth' });
+          }, 350);
         }
+      }, 0);
+    }
 
-        if (isObserving) return;
-
-        observer = new IntersectionObserver((entries) => {
-          const lastEntry = entries[0];
-          if (lastEntry.isIntersecting && !isLoading.value) {
-            const start = currentPage.value * itemsPerPage;
-            const totalProducts = filteredProducts.value.length;
-            
-            // Проверяем, достигли ли мы конца списка
-            if (start < totalProducts) {
-              loadMoreProducts();
-            } else {
-              isObserving = false;
-              observer.disconnect();
-              observer = null;
-            }
-          }
-        }, { threshold: 0.5 });
-
-        // Наблюдаем за последней карточкой
-        const cards = document.querySelectorAll('.game-card');
-        if (cards.length > 0) {
-          const lastCard = cards[cards.length - 1];
-          observer.observe(lastCard);
-          isObserving = true;
-        }
-      };
-
-      // Сбрасываем состояние при изменении фильтров или поиска
-      watch([searchQuery, selectedPlatform, priceMin, priceMax, sortOption], () => {
-        isObserving = false;
-        currentPage.value = 1;
-        displayedProducts.value = [];
-        setTimeout(createObserver, 100);
-      });
-
-      // Переподключаем наблюдатель при изменении отображаемых товаров
-      watch(displayedProducts, () => {
-        if (!isObserving) {
-          setTimeout(createObserver, 100);
-        }
-      });
-
-      // Создаем начальный наблюдатель
-      createObserver();
-    };
+    watch(filteredProducts, () => {
+      goToPage(1);
+    });
 
     const showNotificationMessage = (message, type = 'success') => {
       notification.value = message;
@@ -225,7 +174,7 @@ createApp({
     
       setTimeout(() => {
         showNotification.value = false;
-      }, 4000);
+      }, 2000);
     };
 
     // Получение списка платформ
@@ -313,8 +262,6 @@ createApp({
 
       // Сбрасываем страницу и перезагружаем товары
       currentPage.value = 1;
-      displayedProducts.value = [];
-      loadMoreProducts();
     };
 
     // Удаление из корзины
@@ -337,7 +284,7 @@ createApp({
         cart.value.push({ productId, quantity: 1 });
         showNotificationMessage(`${productName} добавлен в корзину`, 'success');
       }
-    
+      
       saveCart();
     };
     
@@ -486,7 +433,6 @@ createApp({
         
         // Очищаем текущие данные
         products.value = [];
-        displayedProducts.value = [];
         currentPage.value = 1;
         
         // Показываем анимацию загрузки
@@ -514,7 +460,22 @@ createApp({
     // Загружаем товары при старте
     onMounted(() => {
       loadProducts();
-      setupIntersectionObserver();
+    });
+
+    const visiblePages = computed(() => {
+      const pages = [];
+      if (totalPages.value <= 7) {
+        for (let i = 1; i <= totalPages.value; i++) pages.push(i);
+      } else {
+        if (currentPage.value <= 4) {
+          pages.push(1, 2, 3, 4, 5, '...', totalPages.value);
+        } else if (currentPage.value >= totalPages.value - 3) {
+          pages.push(1, '...', totalPages.value - 4, totalPages.value - 3, totalPages.value - 2, totalPages.value - 1, totalPages.value);
+        } else {
+          pages.push(1, '...', currentPage.value - 1, currentPage.value, currentPage.value + 1, '...', totalPages.value);
+        }
+      }
+      return pages;
     });
 
     return {
@@ -526,7 +487,6 @@ createApp({
       sortOption,
       togglePlatform,
       products: products.value,
-      displayedProducts,
       cart,
       isCartOpen,
       searchQuery,
@@ -558,37 +518,11 @@ createApp({
       reloadData,
       isLoading,
       error,
-      applyPriceFilter: () => {
-        // Валидация цен
-        if (priceMin.value !== null && priceMin.value !== '') {
-          const minPrice = Number(priceMin.value);
-          if (isNaN(minPrice) || minPrice < 0) {
-            showNotificationMessage('Минимальная цена должна быть положительным числом', 'error');
-            return;
-          }
-        }
-        if (priceMax.value !== null && priceMax.value !== '') {
-          const maxPrice = Number(priceMax.value);
-          if (isNaN(maxPrice) || maxPrice < 0) {
-            showNotificationMessage('Максимальная цена должна быть положительным числом', 'error');
-            return;
-          }
-        }
-        if (priceMin.value !== null && priceMax.value !== null && 
-            Number(priceMin.value) > Number(priceMax.value)) {
-          showNotificationMessage('Минимальная цена не может быть больше максимальной', 'error');
-          return;
-        }
-
-        // Сохраняем значения в localStorage
-        localStorage.setItem('priceMin', priceMin.value);
-        localStorage.setItem('priceMax', priceMax.value);
-
-        // Сбрасываем страницу и перезагружаем товары
-        currentPage.value = 1;
-        displayedProducts.value = [];
-        loadMoreProducts();
-      }
+      totalPages,
+      paginatedProducts,
+      goToPage,
+      currentPage,
+      visiblePages
     };
   }
 }).mount('#app');
