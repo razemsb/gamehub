@@ -153,12 +153,9 @@ createApp({
       const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState({}, '', newUrl);
       setTimeout(() => {
-        const gamesSection = document.querySelector('.games');
+        const gamesSection = document.getElementById('hero');
         if (gamesSection) {
           gamesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => {
-            window.scrollBy({ top: -100, left: 0, behavior: 'smooth' });
-          }, 350);
         }
       }, 0);
     }
