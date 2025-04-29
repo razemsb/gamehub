@@ -651,5 +651,26 @@
       ],
       "video": "https://rutube.ru/video/the-last-of-us-part-2-remastered-trailer/"
     }
+  },
+  {
+    "id": 33,
+    "name": "Assassin's Creed Shadows Deluxe Edition",
+    "platform": "PSN",
+    "price": 4999,
+    "release": "2025",
+    "img": "preview/assassins-creed-shadows-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Ubisoft",
+    "developer": "Ubisoft",
+    "genre": "Action-Adventure",
+    "description": "Assassin's Creed Shadows Deluxe Edition — это новая игра в серии Assassin's Creed, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/assassins-creed-shadows-screen-1.webp",
+        "screenshots/assassins-creed-shadows-screen-2.webp",
+        "screenshots/assassins-creed-shadows-screen-3.webp"
+      ],
+      "video": "https://rutube.ru/video/assassins-creed-shadows-trailer/"
+    }
   }
 ] 
