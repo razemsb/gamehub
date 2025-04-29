@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Cyberpunk 2077",
+    "name": "Cyberpunk 2077 Ultimate Edition",
     "platform": "Steam",
     "price": 3499,
     "img": "preview/cyberpunk-preview.webp",
@@ -671,6 +671,90 @@
         "screenshots/assassins-creed-shadows-screen-3.webp"
       ],
       "video": "https://rutube.ru/video/assassins-creed-shadows-trailer/"
+    }
+  },
+  {
+    "id": 34,
+    "name": "Half Life 2",
+    "platform": "Steam",
+    "price": 499,
+    "release": "2004",
+    "img": "preview/half-life-2-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Valve",
+    "developer": "Valve",
+    "genre": "Action-Adventure",
+    "description": "Half Life 2 — это новая игра в серии Half Life, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/half-life-2-screen-1.webp",
+        "screenshots/half-life-2-screen-2.webp",
+        "screenshots/half-life-2-screen-3.webp"
+      ],
+      "video": "https://rutube.ru/video/half-life-2-trailer/"
+    }
+  },
+  {
+    "id": 35,
+    "name": "Wolfenstein: The New Order",
+    "platform": "Steam",
+    "price": 499,
+    "release": "2014",
+    "img": "preview/wolfenstein-the-new-order-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Bethesda Softworks",
+    "developer": "MachineGames",
+    "genre": "Action-Adventure",
+    "description": "Wolfenstein: The New Order — это новая игра в серии Wolfenstein, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/wolfenstein-the-new-order-screen-1.webp",
+        "screenshots/wolfenstein-the-new-order-screen-2.webp",
+        "screenshots/wolfenstein-the-new-order-screen-3.webp"
+      ],
+      "video": "https://rutube.ru/video/wolfenstein-the-new-order-trailer/"
+    }
+  },
+  {
+    "id": 36,
+    "name": "Grand Theft Auto San Andreas",
+    "platform": "Steam",
+    "price": 499,
+    "release": "2004",
+    "img": "preview/grand-theft-auto-san-andreas-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Rockstar Games",
+    "developer": "Rockstar North",
+    "genre": "Action-Adventure",
+    "description": "Grand Theft Auto San Andreas — это новая игра в серии Grand Theft Auto, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/grand-theft-auto-san-andreas-screen-1.webp",
+        "screenshots/grand-theft-auto-san-andreas-screen-2.webp",
+        "screenshots/grand-theft-auto-san-andreas-screen-3.webp"
+      ],
+      "video": "https://rutube.ru/video/gta-san-andreas-trailer/"
+    }
+  },
+  {
+    "id": 37,
+    "name": "Battlefield 2042 Gold Edition",
+    "platform": "Steam",
+    "price": 1099,
+    "release": "2021",
+    "img": "preview/battlefield-2042-gold-edition-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Electronic Arts",
+    "developer": "DICE",
+    "genre": "Action-Adventure",
+    "description": "Battlefield 2042 Gold Edition — это новая игра в серии Battlefield, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/battlefield-2042-screen-1.webp",
+        "screenshots/battlefield-2042-screen-2.webp",
+        "screenshots/battlefield-2042-screen-3.webp"
+      ],
+      "video": "https://rutube.ru/video/battlefield-2042-trailer/"
     }
   }
 ] 

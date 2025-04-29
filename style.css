@@ -164,8 +164,26 @@ body {
     color: white;
     font-size: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+.cart-btn:hover {
+    animation: cart-animate 0.7s ease;
+}
+@keyframes cart-animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
 .cart-count {
     position: absolute;
     top: -8px;
@@ -1322,6 +1340,7 @@ img {
 .reload-btn:hover {
     background: var(--accent-color);
     color: var(--bg-color);
+    transform: rotate(360deg);
 }
 
 .reload-btn.rotating {
