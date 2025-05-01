@@ -86,12 +86,16 @@ createApp({
       debouncedSearch();
     });
 
+    // Обновление отфильтрованных товаров при изменении сортировки
+    watch(sortOption, (newSort) => {
+      currentPage.value = 1;
+    });
+
     // Сохранение фильтров в localStorage
-    watch([selectedPlatform, priceMin, priceMax, sortOption], ([platform, min, max, sort]) => {
+    watch([selectedPlatform, priceMin, priceMax], ([platform, min, max]) => {
       localStorage.setItem('selectedPlatform', platform);
       localStorage.setItem('priceMin', min);
       localStorage.setItem('priceMax', max);
-      localStorage.setItem('sortOption', sort);
       
       currentPage.value = 1;
     });
@@ -129,6 +133,10 @@ createApp({
           return result.sort((a, b) => a.name.localeCompare(b.name));
         case 'name-desc':
           return result.sort((a, b) => b.name.localeCompare(a.name));
+        case 'rating-asc':
+          return result.sort((a, b) => a.rating - b.rating);
+        case 'rating-desc':
+          return result.sort((a, b) => b.rating - a.rating);
         default:
           return result;
       }
@@ -256,9 +264,22 @@ createApp({
       localStorage.removeItem('priceMin');
       localStorage.removeItem('priceMax');
       localStorage.removeItem('sortOption');
+      localStorage.removeItem('searchQuery');
 
-      // Сбрасываем страницу и перезагружаем товары
+      // Сбрасываем страницу
       currentPage.value = 1;
+
+      // Обновляем URL без фильтров
+      const params = new URLSearchParams(window.location.search);
+      params.delete('platform');
+      params.delete('min');
+      params.delete('max');
+      params.delete('sort');
+      params.delete('search');
+      window.history.replaceState({}, '', `?${params.toString()}`);
+
+      // Перезагружаем игры
+      loadProducts();
     };
 
     // Удаление из корзины

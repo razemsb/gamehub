@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="preload" href="style.css" as="style">
-    <link rel="stylesheet" href="style.min.css">
+    <link rel="preload" href="style.min.css" as="style" media="print">
+    <link rel="stylesheet" href="style.min.css" media="all">
+    <link rel="preload" href="vendors/vue/vue.js" as="script">
+    <link rel="preload" href="app.vue" as="script">
+    <link rel="preload" href="style.min.css" as="style" media="print" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GAMEHUB - Магазин цифровых ключей для игр">
@@ -17,7 +20,8 @@
 </head>
 <body>
     <div id="app">
-        <div v-if="showNotification" class="notification" :class="{ 'show': showNotification, 'success': notificationType === 'success', 'error': notificationType === 'error' }">
+        <div v-if="showNotification" class="notification"
+            :class="{ 'show': showNotification, 'success': notificationType === 'success', 'error': notificationType === 'error' }">
             <i :class="notificationType === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
             <p>{{ notification }}</p>
         </div>
@@ -55,7 +59,8 @@
                             <div class="filter-title">Платформа</div>
                             <div class="platform-buttons">
                                 <button v-for="platform in platforms" :key="platform"
-                                    :class="{ active: selectedPlatform === platform }" @click="togglePlatform(platform)">
+                                    :class="{ active: selectedPlatform === platform }"
+                                    @click="togglePlatform(platform)">
                                     {{ platform }}
                                 </button>
                             </div>
@@ -79,6 +84,8 @@
                                 <option value="price-desc">Цена ↓</option>
                                 <option value="name-asc">Название (А-Я)</option>
                                 <option value="name-desc">Название (Я-А)</option>
+                                <option value="rating-asc">Рейтинг ↑</option>
+                                <option value="rating-desc">Рейтинг ↓</option>
                             </select>
                         </div>
                     </div>
@@ -114,7 +121,8 @@
                 </div>
 
                 <!-- Состояние отсутствия игр -->
-                <div v-else-if="!isLoading && (!filteredProducts || filteredProducts.length === 0)" class="no-games-container">
+                <div v-else-if="!isLoading && (!filteredProducts || filteredProducts.length === 0)"
+                    class="no-games-container">
                     <i class="fas fa-gamepad"></i>
                     <p v-if="hasActiveFilters">Игры по выбранным фильтрам не найдены</p>
                     <p v-else>Игры не найдены</p>
@@ -142,7 +150,8 @@
                                 </div>
                                 <div class="game-actions">
                                     <div class="badges-container">
-                                        <span class="game-pre-order" v-if="product['pre-order'] === true">Предзаказ!</span>
+                                        <span class="game-pre-order"
+                                            v-if="product['pre-order'] === true">Предзаказ!</span>
                                         <span class="game-platform">{{ product.platform }}</span>
                                         <template v-if="product.marks && product.marks.trim()">
                                             <span v-for="(mark, index) in product.marks.split(',')" :key="index"
@@ -171,16 +180,14 @@
                         <button class="page-btn arrow" :disabled="currentPage === 1" @click="goToPage(currentPage - 1)">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button
-                            v-for="page in visiblePages"
-                            :key="page"
+                        <button v-for="page in visiblePages" :key="page"
                             :class="['page-btn', { active: page === currentPage }, page === '...' ? 'dots' : '']"
-                            v-if="page !== '...'"
-                            @click="goToPage(page)">
+                            v-if="page !== '...'" @click="goToPage(page)">
                             {{ page }}
                         </button>
                         <span v-else class="page-btn dots">...</span>
-                        <button class="page-btn arrow" :disabled="currentPage === totalPages" @click="goToPage(currentPage + 1)">
+                        <button class="page-btn arrow" :disabled="currentPage === totalPages"
+                            @click="goToPage(currentPage + 1)">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -205,7 +212,8 @@
                 </div>
                 <div v-else class="cart-item" v-for="item in cart" :key="item.productId">
                     <div class="item-info">
-                        <img :src="getProductImage(item.productId)" :alt="getProductName(item.productId)" class="product-image" />
+                        <img :src="getProductImage(item.productId)" :alt="getProductName(item.productId)"
+                            class="product-image" />
                         <div class="product-details">
                             <h4>{{ getProductName(item.productId) }}</h4>
                             <span>{{ getProductPrice(item.productId) }} ₽ × {{ item.quantity }}</span>
@@ -246,23 +254,22 @@
                                 <i class="fas fa-chevron-left"></i>
                             </button>
                             <div class="main-media">
-                                <img v-if="currentMedia.type === 'image'" :src="'img/' + currentMedia.src" :alt="selectedGame.name" class="main-image">
-                                <iframe v-else-if="currentMedia.type === 'video'" :src="currentMedia.src" frameborder="0" allowfullscreen class="main-video"></iframe>
+                                <img v-if="currentMedia.type === 'image'" :src="'img/' + currentMedia.src"
+                                    :alt="selectedGame.name" class="main-image">
+                                <iframe v-else-if="currentMedia.type === 'video'" :src="currentMedia.src"
+                                    frameborder="0" allowfullscreen class="main-video"></iframe>
                             </div>
                             <button class="slider-nav next" @click="nextSlide">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
                         <div class="media-thumbnails">
-                            <div class="thumbnail video-thumbnail" 
-                                :class="{ active: currentMedia.type === 'video' }"
-                                @click="selectVideo"
-                                v-if="selectedGame.media && selectedGame.media.video">
-                                <i class="fas fa-play"></i>
+                            <div class="thumbnail"
+                                :class="{ active: currentMedia.type === 'image' && currentMedia.src === selectedGame.img }"
+                                @click="selectImage(selectedGame.img)" :title="'Превью изображения'">
+                                <img :src="'img/' + selectedGame.img" :alt="selectedGame.name">
                             </div>
-                            <div v-for="(image, index) in selectedGame.media?.gallery" 
-                                :key="index" 
-                                class="thumbnail" 
+                            <div v-for="(image, index) in selectedGame.media?.gallery" :key="index" class="thumbnail"
                                 :class="{ active: currentMedia.type === 'image' && currentMedia.src === image }"
                                 @click="selectImage(image)">
                                 <img :src="'img/' + image" :alt="selectedGame.name">
