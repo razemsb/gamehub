@@ -10,6 +10,7 @@
     "publisher": "CD PROJEKT RED",
     "developer": "CD PROJEKT RED",
     "genre": "RPG, Открытый мир, Киберпанк",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/cyberpunk-screen-1.webp",
@@ -30,6 +31,7 @@
     "publisher": "Rockstar Games",
     "developer": "Rockstar Games",
     "genre": "Приключения, Открытый мир, Вестерн",
+    "rating": 5.0,
     "media": {
       "gallery": [
         "screenshots/rdr2-screen-1.webp",
@@ -50,6 +52,7 @@
     "publisher": "CD PROJEKT RED",
     "developer": "CD PROJEKT RED",
     "genre": "RPG, Открытый мир, Фэнтези",
+    "rating": 5.0,
     "media": {
       "gallery": [
         "screenshots/witcher3-screen-1.webp",
@@ -70,6 +73,7 @@
     "publisher": "Sony Interactive Entertainment",
     "developer": "Santa Monica Studio",
     "genre": "Action, Приключения, Мифология",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/god-of-war-screen-1.webp",
@@ -90,6 +94,7 @@
     "publisher": "Bandai Namco Entertainment",
     "developer": "FromSoftware",
     "genre": "RPG, Souls-like, Открытый мир",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/elden-ring-screen-1.webp",
@@ -110,6 +115,7 @@
     "publisher": "Larian Studios",
     "developer": "Larian Studios",
     "genre": "RPG, Классика, Фэнтези",
+    "rating": 5.0,
     "media": {
       "gallery": [
         "screenshots/baldurs-gate-3-screen-1.webp",
@@ -130,6 +136,7 @@
     "publisher": "Bethesda Softworks",
     "developer": "Bethesda Game Studios",
     "genre": "RPG, Космос, Открытый мир",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/starfield-screen-1.webp",
@@ -150,6 +157,7 @@
     "publisher": "Warner Bros. Games",
     "developer": "Avalanche Software",
     "genre": "RPG, Открытый мир, Фэнтези",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/hogwarts-legacy-screen-1.webp",
@@ -170,6 +178,7 @@
     "publisher": "Capcom",
     "developer": "Capcom",
     "genre": "Хоррор, Экшен, Выживание",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/resident-evil-4-remake-screen-1.webp",
@@ -190,6 +199,7 @@
     "publisher": "Electronic Arts",
     "developer": "Motive Studio",
     "genre": "Хоррор, Выживание, Научная фантастика",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/dead-space-remake-screen-1.webp",
@@ -210,6 +220,7 @@
     "publisher": "Activision",
     "developer": "Infinity Ward",
     "genre": "Шутер, Мультиплеер, Экшен",
+    "rating": 4.6,
     "media": {
       "gallery": [
         "screenshots/modern-warfare-3-screen-1.webp",
@@ -230,6 +241,7 @@
     "publisher": "Epic Games",
     "developer": "Remedy Entertainment",
     "genre": "Хоррор, Психологический, Приключения",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/alan-wake-2-screen-1.webp",
@@ -250,6 +262,7 @@
     "publisher": "Rockstar Games",
     "developer": "Rockstar Games",
     "genre": "Открытый мир, Экшен, Приключения",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/gta-5-enchanced-screen-1.webp",
@@ -270,6 +283,7 @@
     "publisher": "Square Enix",
     "developer": "Square Enix",
     "genre": "RPG, Фэнтези, Приключения",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/final-fantasy-16-screen-1.webp",
@@ -290,6 +304,7 @@
     "publisher": "Capcom",
     "developer": "Capcom",
     "genre": "Файтинг, Мультиплеер, Спорт",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/street-fighter-6-screen-1.webp",
@@ -310,6 +325,7 @@
     "publisher": "Warner Bros. Games",
     "developer": "NetherRealm Studios",
     "genre": "Файтинг, Мультиплеер, Боевик",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/mortal-kombat-1-screen-1.webp",
@@ -330,6 +346,7 @@
     "publisher": "Ubisoft",
     "developer": "Ubisoft",
     "genre": "Приключения, Стелс, Открытый мир",
+    "rating": 4.6,
     "media": {
       "gallery": [
         "screenshots/assassins-creed-mirage-screen-1.webp",
@@ -350,6 +367,7 @@
     "publisher": "Sony Interactive Entertainment",
     "developer": "Insomniac Games",
     "genre": "Приключения, Экшен, Открытый мир",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/spider-man-2-screen-1.webp",
@@ -370,6 +388,7 @@
     "publisher": "Xbox Game Studios",
     "developer": "Turn 10 Studios",
     "genre": "Гонки, Симулятор, Спорт",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/forza-motorsport-screen-1.webp",
@@ -390,6 +409,7 @@
     "publisher": "Paradox Interactive",
     "developer": "Colossal Order",
     "genre": "Стратегия, Симулятор, Градостроительство",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/cities-skylines-2-screen-1.webp",
@@ -410,6 +430,7 @@
     "publisher": "Bethesda Softworks",
     "developer": "id Software",
     "genre": "Шутер",
+    "rating": 4.9,
     "description": "Возрождение легендарной серии шутеров. Игра предлагает динамичный геймплей, мощное оружие и жестокие сражения с демонами.",
     "media": {
       "gallery": [
@@ -431,6 +452,7 @@
     "publisher": "Bethesda Softworks",
     "developer": "id Software",
     "genre": "Шутер",
+    "rating": 4.9,
     "description": "Продолжение DOOM 2016 года. Игра предлагает еще более динамичный геймплей, новые механики и эпические сражения.",
     "media": {
       "gallery": [
@@ -452,6 +474,7 @@
     "publisher": "Activision",
     "developer": "id Software",
     "genre": "Шутер",
+    "rating": 4.7,
     "description": "Классический хоррор-шутер, который переосмыслил серию DOOM. Игра предлагает атмосферный геймплей и напряженные сражения.",
     "media": {
       "gallery": [
@@ -473,6 +496,7 @@
     "publisher": "id Software",
     "developer": "id Software",
     "genre": "Шутер",
+    "rating": 4.8,
     "description": "Классический шутер, который стал культовым. Игра предлагает классический геймплей и множество уровней.",
     "media": {
       "gallery": [
@@ -494,6 +518,7 @@
     "publisher": "id Software",
     "developer": "id Software",
     "genre": "Шутер",
+    "rating": 4.9,
     "description": "Первая игра в серии DOOM, которая положила начало жанру шутеров. Игра предлагает классический геймплей и множество уровней.",
     "media": {
       "gallery": [
@@ -537,6 +562,7 @@
     "developer": "EA Sports",
     "genre": "Sports",
     "description": "Новая часть популярного футбольного симулятора. Игра предлагает обновленный геймплей, команды и режимы.",
+    "rating": 4.6,
     "media": {
       "gallery": [
         "screenshots/fifa-24-screen-1.webp",
@@ -558,6 +584,7 @@
     "developer": "Visual Concepts",
     "genre": "Sports",
     "description": "Новая часть популярного баскетбольного симулятора. Игра предлагает обновленный геймплей, команды и режимы.",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/nba-2k24-screen-1.webp",
@@ -579,6 +606,7 @@
     "developer": "Polyphony Digital",
     "genre": "Racing",
     "description": "Новая часть легендарной серии гоночных симуляторов. Игра предлагает реалистичную физику, множество машин и трасс.",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/gran-turismo-7-screen-1.webp",
@@ -601,6 +629,7 @@
     "developer": "id Software",
     "genre": "Шутер",
     "description": "DOOM The Dark Ages — это новая игра в серии DOOM, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/doom-the-dark-ages-screen-1.webp",
@@ -622,6 +651,7 @@
     "developer": "Naughty Dog",
     "genre": "Action-Adventure",
     "description": "The Last of Us Part I — это новая игра в серии The Last of Us, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/the-last-of-us-part-1-screen-1.webp",
@@ -643,6 +673,7 @@
     "developer": "Naughty Dog",
     "genre": "Action-Adventure",
     "description": "The Last of Us Part II Remastered — это новая игра в серии The Last of Us, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/the-last-of-us-part-2-remastered-screen-1.webp",
@@ -664,6 +695,7 @@
     "developer": "Ubisoft",
     "genre": "Action-Adventure",
     "description": "Assassin's Creed Shadows Deluxe Edition — это новая игра в серии Assassin's Creed, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.7,
     "media": {
       "gallery": [
         "screenshots/assassins-creed-shadows-screen-1.webp",
@@ -685,6 +717,7 @@
     "developer": "Valve",
     "genre": "Action-Adventure",
     "description": "Half Life 2 — это новая игра в серии Half Life, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 5.0,
     "media": {
       "gallery": [
         "screenshots/half-life-2-screen-1.webp",
@@ -706,6 +739,7 @@
     "developer": "MachineGames",
     "genre": "Action-Adventure",
     "description": "Wolfenstein: The New Order — это новая игра в серии Wolfenstein, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.8,
     "media": {
       "gallery": [
         "screenshots/wolfenstein-the-new-order-screen-1.webp",
@@ -727,6 +761,7 @@
     "developer": "Rockstar North",
     "genre": "Action-Adventure",
     "description": "Grand Theft Auto San Andreas — это новая игра в серии Grand Theft Auto, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "rating": 4.9,
     "media": {
       "gallery": [
         "screenshots/grand-theft-auto-san-andreas-screen-1.webp",
@@ -755,6 +790,30 @@
         "screenshots/battlefield-2042-screen-3.webp"
       ],
       "video": "https://rutube.ru/video/battlefield-2042-trailer/"
+    }
+  },
+  {
+    "id": 38,
+    "name": "Helldivers 2",
+    "platform": "PSN",
+    "price": 3099,
+    "release": "2024",
+    "img": "preview/helldivers-2-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Arrowhead Game Studios",
+    "developer": "Arrowhead Game Studios",
+    "genre": "Action-Adventure",
+    "rating": 4.9,
+    "description": "Helldivers 2 — это новая игра в серии Helldivers, которая предлагает новый взгляд на классический шутер. Игра предлагает новые механики и уровни.",
+    "media": {
+      "gallery": [
+        "screenshots/helldivers-2-screen-1.webp",
+        "screenshots/helldivers-2-screen-2.webp",
+        "screenshots/helldivers-2-screen-3.webp",
+        "screenshots/helldivers-2-screen-4.webp",
+        "screenshots/helldivers-2-screen-5.webp"
+      ],
+      "video": "https://rutube.ru/video/helldivers-2-trailer/"
     }
   }
 ] 

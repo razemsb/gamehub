@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
@@ -13,10 +12,9 @@
     <link rel="shortcut icon" href="img/gamepad-solid.svg" type="image/svg+xml">
     <link rel="stylesheet" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css">
     <script src="vendors/vue/vue.js" defer></script>
-    <script src="app.js" defer></script>
+    <script src="app.vue" defer></script>
     <script src="assest.js" defer></script>
 </head>
-
 <body>
     <div id="app">
         <div v-if="showNotification" class="notification" :class="{ 'show': showNotification, 'success': notificationType === 'success', 'error': notificationType === 'error' }">
@@ -34,7 +32,7 @@
                         </button>
                         <div class="cart-btn" @click="toggleCart">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">{{ cart.length }}</span>
+                            <span v-if="cart.length > 0" class="cart-count">{{ cart.length }}</span>
                         </div>
                     </div>
                 </div>
@@ -161,6 +159,10 @@
                                             <i :class="isInCart(product.id) ? 'fas fa-check' : 'fas fa-cart-plus'"></i>
                                         </button>
                                     </div>
+                                    <div class="rating-container">
+                                        <span class="rating-value">{{ product.rating }} / 5</span>
+                                        <i class="fas fa-star"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -196,7 +198,12 @@
             </div>
 
             <div class="cart-items">
-                <div class="cart-item" v-for="item in cart" :key="item.productId">
+                <div v-if="cart.length === 0" class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Ваша корзина пуста</p>
+                    <p class="empty-cart-subtext">Добавьте игры, чтобы продолжить покупки</p>
+                </div>
+                <div v-else class="cart-item" v-for="item in cart" :key="item.productId">
                     <div class="item-info">
                         <img :src="getProductImage(item.productId)" :alt="getProductName(item.productId)" class="product-image" />
                         <div class="product-details">
@@ -215,7 +222,7 @@
                     <span>Итого:</span>
                     <span class="total-price">{{ total }} ₽</span>
                 </div>
-                <button class="checkout-btn" @click="checkout">
+                <button class="checkout-btn" @click="checkout" :disabled="cart.length === 0">
                     Оформить заказ
                 </button>
             </div>

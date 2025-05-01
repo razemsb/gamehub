@@ -15,7 +15,7 @@ createApp({
     const searchQuery = ref('');
     const products = ref([]);
     const currentPage = ref(getPageFromUrl());
-    const itemsPerPage = 8;
+    const itemsPerPage = 12;
     const isLoading = ref(false);
     const cart = ref(JSON.parse(localStorage.getItem('cart')) || []);
     const isCartOpen = ref(false);

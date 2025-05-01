@@ -164,26 +164,18 @@ body {
     color: white;
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .cart-btn:hover {
-    animation: cart-animate 0.7s ease;
+    animation: shake 0.5s ease-in-out;
 }
-@keyframes cart-animate {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-10deg);
-    }
-    75% {
-        transform: rotate(10deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
 }
+
 .cart-count {
     position: absolute;
     top: -8px;
@@ -682,6 +674,12 @@ body {
 
 .checkout-btn:hover {
     background-color: #00a884;
+}
+
+.checkout-btn:disabled {
+    background-color: var(--dark);
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 .overlay {
@@ -1533,4 +1531,50 @@ body.modal-open {
     box-shadow: none;
     border: none;
     margin: 0 2px;
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--dark);
+}
+
+.empty-cart i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    opacity: 0.5;
+}
+
+.empty-cart p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.empty-cart-subtext {
+    font-size: 14px;
+    color: var(--dark);
+    opacity: 0.8;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.rating-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.rating-container i {
+    font-size: 16px;
+    color: #ffd700;
 }
