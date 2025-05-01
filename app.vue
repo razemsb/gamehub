@@ -1,3 +1,4 @@
+console.log('Vue version:', Vue.version);
 const { createApp, ref, computed, onMounted, watch } = Vue;
 
 // Утилиты
@@ -12,6 +13,8 @@ const debounce = (fn, delay) => {
 createApp({
   setup() {
     // Состояния с начальными значениями из localStorage
+    const showOrderModal = ref(false);
+    const currentOrderId = ref(null);
     const searchQuery = ref('');
     const products = ref([]);
     const currentPage = ref(getPageFromUrl());
@@ -333,14 +336,25 @@ createApp({
     };
 
     // Оформление заказа
+
+    const toggleOrderModal = (show = true) => {
+      showOrderModal.value = show;
+    };
+
     const checkout = () => {
       if (cart.value.length === 0) return;
       const orderId = Math.floor(Math.random() * 100000) + 1;
-      alert(`Заказ №${orderId} оформлен! Ключи придут на вашу почту в течении 10-30 минут`);
+      currentOrderId.value = orderId;
+      console.log('Opening order modal with orderId:', orderId);
+      toggleOrderModal(true);
       cart.value = [];
       saveCart();
       toggleCart();
     };
+
+    const countGames = computed(() => {
+      return products.value.length;
+    });
 
     const showGameInfo = (game) => {
       selectedGame.value = game;
@@ -425,6 +439,7 @@ createApp({
 
     const closeModals = () => {
       showInfoModal.value = false;
+      showOrderModal.value = false;
       isCartOpen.value = false;
       document.body.classList.remove('modal-open');
     };
@@ -483,7 +498,13 @@ createApp({
       return pages;
     });
 
+    // Функция для применения фильтра цены
+    const applyPriceFilter = () => {
+      // Фильтрация уже происходит в computed, эта функция нужна только для интерфейса
+    };
+
     return {
+      countGames,
       hasActiveFilters,
       resetFilters,
       selectedPlatform,
@@ -523,11 +544,15 @@ createApp({
       reloadData,
       isLoading,
       error,
+      showOrderModal,
+      toggleOrderModal,
+      currentOrderId,
       totalPages,
       paginatedProducts,
       goToPage,
       currentPage,
-      visiblePages
+      visiblePages,
+      applyPriceFilter
     };
   }
 }).mount('#app');
