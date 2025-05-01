@@ -333,26 +333,13 @@ createApp({
     };
 
     // Оформление заказа
-    const checkout = async () => {
+    const checkout = () => {
       if (cart.value.length === 0) return;
-
-      try {
-        const response = await fetch('./api/order.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cart: cart.value })
-        });
-
-        const data = await response.json();
-
-        alert(`Заказ #${data.orderId} успешно оформлен!`);
-        cart.value = [];
-        saveCart();
-        toggleCart();
-      } catch (error) {
-        console.error('Ошибка оформления заказа:', error);
-        alert('Произошла ошибка при оформлении заказа');
-      }
+      const orderId = Math.floor(Math.random() * 100000) + 1;
+      alert(`Заказ №${orderId} оформлен! Ключи придут на вашу почту в течении 10-30 минут`);
+      cart.value = [];
+      saveCart();
+      toggleCart();
     };
 
     const showGameInfo = (game) => {
