@@ -817,5 +817,29 @@
       ],
       "video": "https://rutube.ru/video/helldivers-2-trailer/"
     }
+  },
+  {
+    "id": 39,
+    "name": "Devil May Cry 5",
+    "platform": "Steam",
+    "price": 799,
+    "release": "2019",
+    "img": "preview/devil-may-cry-5-preview.webp",
+    "marks": "Action, Приключения",
+    "publisher": "Capcom",
+    "developer": "Capcom",
+    "genre": "Action-Adventure",
+    "rating": 0,
+    "description": "Devil May Cry 5 это каллище, не покупайте",
+    "media": {
+      "gallery": [
+        "screenshots/devil-may-cry-5-screen-1.webp",
+        "screenshots/devil-may-cry-5-screen-2.webp",
+        "screenshots/devil-may-cry-5-screen-3.webp",
+        "screenshots/devil-may-cry-5-screen-4.webp",
+        "screenshots/devil-may-cry-5-screen-5.webp"
+      ],
+      "video": "https://rutube.ru/video/helldivers-2-trailer/"
+    }
   }
 ] 
