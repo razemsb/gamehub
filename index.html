@@ -24,7 +24,6 @@
             <i :class="notificationType === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle'"></i>
             <p>{{ notification }}</p>
         </div>
-        <!-- Шапка -->
         <header class="header">
             <div class="container">
                 <div class="header__content">
@@ -41,16 +40,12 @@
                 </div>
             </div>
         </header>
-
-        <!-- Главный баннер -->
         <section class="hero">
             <div class="container" id="hero">
                 <h1>ЛУЧШИЕ ИГРЫ 2025</h1>
-                <p>Ключи для Steam, Origin, Epic Games и других платформ, В нашем магазине <strong>{{ countGames }}
-                        игр</strong> на любой вкус и цвет!</p>
+                <p>Ключи для Steam, Origin, Epic Games и других платформ, В нашем магазине <strong>{{ countGames }} игр</strong> на любой вкус и цвет!</p>
             </div>
         </section>
-
         <div class="filters-bar" id="filters-bar">
             <div class="container">
                 <div class="filters-container">
@@ -65,7 +60,6 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="filter-group price-filter">
                             <div class="filter-title">Цена</div>
                             <div class="price-range">
@@ -75,7 +69,6 @@
                                 <button class="apply-price" @click="applyPriceFilter">Применить</button>
                             </div>
                         </div>
-
                         <div class="filter-group sort-filter">
                             <div class="filter-title">Сортировка</div>
                             <select v-model="sortOption" class="sort-select">
@@ -98,19 +91,13 @@
         <button class="scroll-to-top-btn" id="scrollToTopBtn" title="Наверх" style="display:none;">
             <i class="fas fa-arrow-up"></i>
         </button>
-
-        <!-- Каталог игр -->
         <section class="games" id="games">
             <div class="container">
                 <h2 class="section-title">ПОПУЛЯРНЫЕ ИГРЫ</h2>
-
-                <!-- Состояние загрузки -->
                 <div v-if="isLoading && !displayedProducts.length" class="spinner-container">
                     <div class="spinner"></div>
                     <span class="spinner-text">Загрузка игр...</span>
                 </div>
-
-                <!-- Состояние ошибки -->
                 <div v-else-if="error" class="error-container">
                     <i class="fas fa-exclamation-circle"></i>
                     <p>{{ error }}</p>
@@ -119,8 +106,6 @@
                         Попробовать снова
                     </button>
                 </div>
-
-                <!-- Состояние отсутствия игр -->
                 <div v-else-if="!isLoading && (!filteredProducts || filteredProducts.length === 0)"
                     class="no-games-container">
                     <i class="fas fa-gamepad"></i>
@@ -130,8 +115,6 @@
                         Сбросить фильтры
                     </button>
                 </div>
-
-                <!-- Список игр -->
                 <template v-else>
                     <div class="games-grid">
                         <div class="game-card" v-for="product in paginatedProducts" :key="product.id">
@@ -190,8 +173,6 @@
                 </template>
             </div>
         </section>
-
-        <!-- Корзина (сайдбар) -->
         <div class="cart-sidebar" :class="{ 'open': isCartOpen }">
             <div class="cart-header">
                 <h3>Ваша корзина</h3>
@@ -199,7 +180,6 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-
             <div class="cart-items">
                 <div v-if="cart.length === 0" class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
@@ -220,7 +200,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="cart-footer">
                 <div class="total">
                     <span>Итого:</span>
@@ -232,35 +211,12 @@
             </div>
         </div>
         <div class="overlay" :class="{ 'active': isCartOpen || showInfoModal }" @click="closeModals"></div>
-
-        <!-- Модальное окно с информацией об игре -->
         <div class="modal order-modal" :class="{ 'show': showInfoModal }">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>{{ selectedGame.name }}</h3>
                     <button class="close-btn" @click="closeModals">
                 </div>
-
-                <!-- Модальное окно для подтверждения заказа -->
-                <div class="modal order-modal" :class="{ 'show': showOrderModal }">
-                    <div class="modal-content order-modal-content">
-                        <div class="modal-header">
-                            <h3>Заказ оформлен</h3>
-                            <button class="close-btn" @click="closeOrderModal">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body order-modal-body">
-                            <div class="order-success">
-                                <i class="fas fa-check-circle"></i>
-                                <h4>Заказ №{{ currentOrderId }} успешно оформлен!</h4>
-                                <p>Ключи придут на вашу почту в течение 10-30 минут.</p>
-                                <p>Спасибо за покупку!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="modal" :class="{ 'show': showInfoModal }">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -270,7 +226,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <!-- Верхняя секция с галереей -->
                             <div class="game-gallery-section">
                                 <div class="slider-container">
                                     <button class="slider-nav prev" @click="prevSlide">
@@ -300,8 +255,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Нижняя секция с информацией -->
                             <div class="game-info-section">
                                 <div class="game-details">
                                     <div class="detail-item">

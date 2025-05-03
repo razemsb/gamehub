@@ -1,4 +1,3 @@
-console.log('Vue version:', Vue.version);
 const { createApp, ref, computed, onMounted, watch } = Vue;
 
 // Утилиты
