@@ -181,7 +181,7 @@ createApp({
     
       setTimeout(() => {
         showNotification.value = false;
-      }, 2000);
+      }, 1300);
     };
 
     // Получение списка платформ
@@ -344,7 +344,7 @@ createApp({
       if (cart.value.length === 0) return;
       const orderId = Math.floor(Math.random() * 100000) + 1;
       currentOrderId.value = orderId;
-      console.log('Opening order modal with orderId:', orderId);
+      
       toggleOrderModal(true);
       cart.value = [];
       saveCart();

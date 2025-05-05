@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель GAMEHUB</title>
+    <link rel="stylesheet" href="style.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome-free-6.7.2-web/css/all.min.css">
+    <script src="vendors/vue/vue.js" defer></script>
+    <script src="assest.js" defer></script>
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .admin-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .admin-form {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .admin-form .form-group {
+            margin-bottom: 20px;
+        }
+        .admin-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .admin-form input,
+        .admin-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        .admin-form input:focus,
+        .admin-form select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .admin-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            height: 150px;
+            resize: vertical;
+            font-size: 14px;
+        }
+        .admin-actions {
+            margin-top: 20px;
+        }
+        .admin-actions button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .admin-actions .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .admin-actions .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .products-list {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--gray);
+            transition: background-color 0.2s;
+        }
+        .product-item:hover {
+            background-color: var(--light);
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .product-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .product-actions button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .product-actions .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        .product-actions .btn-danger:hover {
+            background: #c0392b;
+        }
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 20px;
+            }
+            .admin-form {
+                padding: 20px;
+            }
+            .products-list {
+                padding: 20px;
+            }
+            .product-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .product-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="admin-app" class="admin-container">
+        <div class="admin-header">
+            <h1>Админ-панель GAMEHUB</h1>
+            <div class="admin-actions">
+                <button class="btn-primary" @click="reloadData">Обновить данные</button>
+            </div>
+        </div>
+        
+        <div class="admin-form">
+            <h2>Добавить новый товар</h2>
+            <div class="form-group">
+                <label for="name">Название</label>
+                <input type="text" id="name" v-model="newProduct.name" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea id="description" v-model="newProduct.description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Цена</label>
+                <input type="number" id="price" v-model="newProduct.price" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Изображение</label>
+                <input type="text" id="image" v-model="newProduct.image" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Категория</label>
+                <select id="category" v-model="newProduct.category" required>
+                    <option value="games">Игры</option>
+                    <option value="software">Программное обеспечение</option>
+                    <option value="other">Другое</option>
+                </select>
+            </div>
+            <div class="admin-actions">
+                <button class="btn-primary" @click="addProduct">Добавить товар</button>
+            </div>
+        </div>
+
+        <div class="products-list">
+            <h2>Список товаров</h2>
+            <div v-for="product in products" :key="product.id" class="product-item">
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>Цена: {{ product.price }} ₽</p>
+                    <p>Категория: {{ product.category }}</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-danger" @click="deleteProduct(product.id)">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#admin-app',
+            data() {
+                return {
+                    newProduct: {
+                        id: null,
+                        name: '',
+                        description: '',
+                        price: null,
+                        image: '',
+                        category: 'games'
+                    },
+                    products: []
+                };
+            },
+            methods: {
+                async loadProducts() {
+                    try {
+                        const response = await fetch('./api/data.json');
+                        const data = await response.json();
+                        this.products = data.products;
+                    } catch (error) {
+                        alert('Ошибка при загрузке товаров');
+                        console.error(error);
+                    }
+                },
+                async addProduct() {
+                    if (!this.newProduct.name || !this.newProduct.price) {
+                        alert('Заполните все обязательные поля');
+                        return;
+                    }
+
+                    try {
+                        // Получаем текущие данные
+                        const response = await fetch('products.json');
+                        const data = await response.json();
+
+                        // Генерируем новый ID
+                        const newId = data.products.length + 1;
+                        
+                        // Добавляем новый продукт
+                        const newProduct = {
+                            id: newId,
+                            name: this.newProduct.name,
+                            description: this.newProduct.description,
+                            price: this.newProduct.price,
+                            image: this.newProduct.image,
+                            category: this.newProduct.category
+                        };
+                        data.products.push(newProduct);
+
+                        // Сохраняем обновленные данные
+                        await fetch('products.json', {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        // Обновляем список и очищаем форму
+                        this.loadProducts();
+                        this.newProduct = {
+                            id: null,
+                            name: '',
+                            description: '',
+                            price: null,
+                            image: '',
+                            category: 'games'
+                        };
+                        
+                        alert('Товар успешно добавлен!');
+                    } catch (error) {
+                        alert('Ошибка при добавлении товара');
+                        console.error(error);
+                    }
+                },
+                async deleteProduct(id) {
+                    if (!confirm('Вы уверены, что хотите удалить этот товар?')) {
+                        return;
+                    }
+
+                    try {
+                        // Получаем текущие данные
+                        const response = await fetch('products.json');
+                        const data = await response.json();
+
+                        // Удаляем продукт
+                        data.products = data.products.filter(product => product.id !== id);
+
+                        // Сохраняем обновленные данные
+                        await fetch('products.json', {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        // Обновляем список
+                        this.loadProducts();
+                        alert('Товар успешно удален!');
+                    } catch (error) {
+                        alert('Ошибка при удалении товара');
+                        console.error(error);
+                    }
+                }
+            },
+            created() {
+                this.loadProducts();
+            }
+        });
+    </script>
+</body>
+</html>
